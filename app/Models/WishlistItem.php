@@ -6,25 +6,26 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class SubCategory
+ * Class WishlistItem
  * @package App\Models
- * @version September 5, 2019, 3:20 pm UTC
+ * @version September 16, 2019, 8:43 pm UTC
  *
- * @property string name
- * @property integer category_id
+ * @property integer wishlist_id
+ * @property integer product_id
  */
-class SubCategory extends Model
+class WishlistItem extends Model
 {
     use SoftDeletes;
 
-    public $table = 'sub_categories';
-
+    public $table = 'wishlist_items';
+    
 
     protected $dates = ['deleted_at'];
 
+
     public $fillable = [
-        'name',
-        'category_id'
+        'wishlist_id',
+        'product_id'
     ];
 
     /**
@@ -34,8 +35,8 @@ class SubCategory extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string',
-        'category_id' => 'integer'
+        'wishlist_id' => 'integer',
+        'product_id' => 'integer'
     ];
 
     /**
@@ -44,12 +45,9 @@ class SubCategory extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required|unique:sub_categories',
-        'category_id' => 'required'
+        'wishlist_id' => 'required',
+        'product_id' => 'required'
     ];
 
-    public function category(){
-        return $this->belongsTo('App\Models\Category');
-    }
-
+    
 }

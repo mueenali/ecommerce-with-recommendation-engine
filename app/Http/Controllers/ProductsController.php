@@ -29,7 +29,7 @@ class ProductsController extends Controller
     public function getProduct($id) {
         $product = $this->productsRepository->find($id);
         if(empty($product)) {
-            return redirect('back');
+            return redirect('shop');
         }
         return view('app.products.product', compact('product'));
     }

@@ -59,7 +59,7 @@
             <div class="col-lg-4 col-12">
                 <div class="header_right_info">
                     <ul>
-                        <li><a href="#">Wishlist<span> <i class="zmdi zmdi-favorite-outline"></i> (0) </span></a></li>
+                        <li><a href="{{route('wishList.index')}}">Wishlist<span> <i class="zmdi zmdi-favorite-outline"></i> (0) </span></a></li>
                         <li> <a href="#">Login</a></li>
                     </ul>
                 </div>

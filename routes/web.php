@@ -14,3 +14,8 @@
 Route::get('/','HomeController@index')->name('home');
 Route::get('/shop', 'ProductsController@getAllProducts')->name('shop.index');
 Route::get('/product/{id}','ProductsController@getProduct')->name('product.index');
+Route::resource('/wishList', 'WishListController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

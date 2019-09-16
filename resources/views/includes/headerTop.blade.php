@@ -32,7 +32,7 @@
             <div class="col-lg-2 col-md-1">
                 <div class="mini_cart_box_wrapper text-right">
                     <a href="#">
-                        <img src="assets/img/icon/cart-2.png" alt="Mini Cart Icon">
+                        <img src="/assets/img/icon/cart-2.png" alt="Mini Cart Icon">
                         <span class="cart_count">02</span>
                     </a>
                     <ul class="mini_cart_box">

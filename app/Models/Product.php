@@ -31,15 +31,15 @@ class Product extends Model
         'price',
         'quantity',
         'availability',
-        'category_id'
+        'sub_category_id'
     ];
 
-    public function category(){
-        return $this->belongsTo('App/Models/SubCategory');
+    public function subCategory(){
+        return $this->belongsTo('App\Models\SubCategory');
     }
 
     public function photos() {
-        return $this->hasMany('App/Models/Photo');
+        return $this->hasMany('App\Models\Photo');
     }
 
     /**
