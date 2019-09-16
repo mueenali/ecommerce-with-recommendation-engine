@@ -39,7 +39,8 @@ class AdminCategoriesAPIController extends AppBaseController
             $request->get('skip'),
             $request->get('limit')
         );
-        return $this->sendResponse($categories->toArray(), 'Categories retrieved successfully');
+        $subCategories = $categories->subCategories;
+        return $this->sendResponse($subCategories->toArray(), 'Categories retrieved successfully');
     }
 
     /**
@@ -69,12 +70,10 @@ class AdminCategoriesAPIController extends AppBaseController
     {
         /** @var Category $category */
         $category = $this->categoriesRepository->find($id);
-
         if (empty($category)) {
             return $this->sendError('Category not found');
         }
-
-        return  $this->sendResponse($category,"Category has been created successfully");
+        return $this->sendResponse($category,"Category has been created successfully");
 
     }
 
@@ -97,9 +96,7 @@ class AdminCategoriesAPIController extends AppBaseController
         if (empty($category)) {
             return $this->sendError('Category not found');
         }
-
         $category = $this->categoriesRepository->update($input, $id);
-
         return $this->sendResponse($category->toArray(), 'Category updated successfully');
     }
 
@@ -120,6 +117,6 @@ class AdminCategoriesAPIController extends AppBaseController
         if (!$result) {
             return $this->sendError('Category not found');
         }
-        return $this->sendResponse($id, ' Category deleted successfully');
+        return $this->sendResponse($id, 'Category deleted successfully');
     }
 }

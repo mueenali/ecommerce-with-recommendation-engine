@@ -39,8 +39,6 @@ class Photo extends Model
         'product_id' => 'integer'
     ];
 
-
-
     /**
      * Validation rules
      *
@@ -51,5 +49,8 @@ class Photo extends Model
         'product_id' => 'required'
     ];
 
+    public function product(){
+        return $this->belongsTo('App/Models/Product');
+    }
 
 }

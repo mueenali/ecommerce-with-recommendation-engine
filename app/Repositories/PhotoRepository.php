@@ -32,12 +32,12 @@ class PhotoRepository extends BaseRepository
     }
     public function unlinkPhotos($photos) {
         if (typeOf(array($photos))){
-            foreach ($photos->path as $path){
-                Helper::unlinkFiles($path);
+            foreach ($photos->url as $url){
+                Helper::unlinkFiles($url);
             }
             return true;
         }
-        Helper::unlinkFiles($photos->path);
+        Helper::unlinkFiles($photos->url);
         return true;
     }
     /**
