@@ -63,10 +63,9 @@ class Product extends Model
     /**
      * Set the user's availability.
      *
-     * @param  string  $value
      * @return void
      */
-    public function setAvailabilityAttribute($value)
+    public function setAvailabilityAttribute()
     {
         $quantity = $this->attributes['quantity'];
         if($quantity > 0) {
