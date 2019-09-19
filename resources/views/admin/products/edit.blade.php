@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" >{{ __('Description') }}</label>
-                                    <textarea name="description" rows="3" id="exampleFormControlTextarea1" class="form-control form-control-alternative{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="{{ __('Description') }}" value="" required></textarea>
+                                    <textarea name="description" rows="3" id="exampleFormControlTextarea1" class="form-control form-control-alternative{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="{{ __('Description') }}" value="{{$product->description}}" required></textarea>
                                     @if ($errors->has('description'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('description') }}</strong>
