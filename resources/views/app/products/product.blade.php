@@ -103,7 +103,11 @@
                                                 <span>Availability : </span>
                                             </div>
                                             <ul>
-                                                <li><a href="">{{$product->availability}}</a></li>
+                                                @if($product->quantity >0)
+                                                    <li><a href="">In Stock</a></li>
+                                                @else
+                                                    <li><a href="">Out Of Stock</a></li>
+                                                @endif
                                             </ul>
                                         </div>
                                         <div class="product-share">

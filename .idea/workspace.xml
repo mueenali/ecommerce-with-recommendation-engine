@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60f6b22d-6330-4f2e-9210-eb42c78d2c2a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/products/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/products/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_01_092511_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_01_092511_create_products_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/products/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/products/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/app/products/product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/products/product.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/app/wishlist.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/wishlist.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -196,6 +201,7 @@
       <workItem from="1568779559746" duration="19376000" />
       <workItem from="1568858044205" duration="21428000" />
       <workItem from="1568896541866" duration="8647000" />
+      <workItem from="1568921101043" duration="1145000" />
     </task>
     <servers />
   </component>

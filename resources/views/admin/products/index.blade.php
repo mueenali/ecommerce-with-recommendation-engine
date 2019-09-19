@@ -52,7 +52,11 @@
                                     <td>${{ $product->price }}</td>
                                     <td>{{ $product->quantity }}</td>
                                     <td>{{ $product->brand }}</td>
-                                    <td>{{ $product->availability }}</td>
+                                    @if($product->quantity > 0)
+                                    <td>In Stock</td>
+                                    @else
+                                        <td>Out Of Stock</td>
+                                    @endif
                                     <td>{{ $product->subCategory->name}}</td>
                                     <td>{{ $product->created_at->format('d/m/Y H:i') }}</td>
                                     <td class="text-right">

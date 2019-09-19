@@ -21,7 +21,6 @@ class CreateProductsTable extends Migration
             $table->double('price');
             $table->integer('quantity');
             $table->string('brand');
-            $table->string('availability');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -24,11 +24,14 @@
                                 @foreach($wishLists as $key => $value)
                                 <tr>
                                     <td class="pro-remove"><a href="{{ route('wishList.item.remove', $value->id) }}">X</a></td>
-
                                     <td class="pro-thumbnail"><a href="#"><img src="assets/img/product/pro_sm_1.png" alt="" /></a></td>
                                     <td class="pro-title"><a href="#">{{$value->product->name}}</a></td>
                                     <td class="pro-price"><span class="amount">${{$value->product->price}}</span></td>
-                                    <td class="pro-stock-stauts"><span class="in-stock">{{$value->product->availability}}</span></td>
+                                    @if($value->product->quantity > 0)
+                                        <td class="pro-stock-stauts"><span class="in-stock">In Stock</span></td>
+                                    @else
+                                        <td class="pro-stock-stauts"><span class="out-stock">Out Of Stock</span></td>
+                                    @endif
                                     <td class="pro-add-to-cart"><a href="#" class="add-to-cart">add to cart</a></td>
                                 </tr>
                                 </tbody>

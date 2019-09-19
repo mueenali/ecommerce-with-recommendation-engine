@@ -31,7 +31,6 @@ class Product extends Model
         'description',
         'price',
         'quantity',
-        'availability',
         'brand',
         'sub_category_id'
     ];
@@ -56,7 +55,6 @@ class Product extends Model
         'price' => 'double',
         'quantity' => 'integer',
         'brand' => 'string',
-        'availability' =>'string',
         'sub_category_id' =>'integer',
     ];
 
@@ -65,13 +63,4 @@ class Product extends Model
      *
      * @return void
      */
-    public function setAvailabilityAttribute()
-    {
-        $quantity = $this->attributes['quantity'];
-        if($quantity > 0) {
-            $this->attributes['availability'] = 'In Stock';
-        }else {
-            $this->attributes['availability'] = 'Out of Stock';
-        }
-    }
 }
