@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App\Http\Requests\CreateCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
+use App\Repositories\CategoryRepository;
 class AdminCategoryController extends Controller
 {
     /**
@@ -11,9 +12,16 @@ class AdminCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /** @var  CategoryRepository */
+    private $categoryRepository;
+    public function __construct(CategoryRepository $categoryRepo)
+    {
+        $this->categoryRepository = $categoryRepo;
+    }
     public function index()
     {
-        //
+        $categories = $this->categoryRepository->paginate(15);
+        return view('admin.categories.index')->with('categories', $categories);
     }
 
     /**
@@ -23,18 +31,19 @@ class AdminCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\CreateCategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCategoryRequest $request)
     {
-        //
+        $this->categoryRepository->create($request->all());
+        return redirect()->route('category.index')->withStatus(__('Category successfully created.'));
     }
 
     /**
@@ -56,19 +65,21 @@ class AdminCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = $this->categoryRepository->find($id);
+        return view('admin.categories.edit')->with('category', $category);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\UpdateCategoryRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, $id)
     {
-        //
+        $this->categoryRepository->update($request->all(), $id);
+        return redirect()->route('category.index')->withStatus(__('Category successfully updated.'));
     }
 
     /**
@@ -79,6 +90,7 @@ class AdminCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->categoryRepository->delete($id);
+        return redirect()->route('category.index')->withStatus(__('Category successfully deleted.'));
     }
 }
