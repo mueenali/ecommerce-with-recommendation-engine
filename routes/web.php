@@ -19,6 +19,36 @@ Route::resource('/wishList', 'WishListController',['except' => ['show', 'create'
 Route::get('/wishList/remove/{id}', 'WishListController@destroy')->name("wishList.item.remove");
 
 
+
+
+
+
+
+Route::get('/about-us', function () {
+    return view('about-us');
+})->name('about-us');
+
+Route::get('/cart', function () {
+    return view('cart');
+})->name('cart');
+
+Route::get('/checkout', function () {
+    return view('checkout');
+})->name('checkout');
+
+Route::get('/contact-us', function () {
+    return view('contact-us');
+})->name('contact-us');
+
+
+Route::get('/my-account', function () {
+    return view('my-account');
+})->name('my-account');
+
+
+
+
+
 Route::prefix('admin')->group(function () {
     Route::resource('user', 'UserController', ['except' => ['show']]);
     Route::resource('category', 'AdminCategoryController', ['except' => ['show']]);

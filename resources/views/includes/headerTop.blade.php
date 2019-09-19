@@ -3,7 +3,7 @@
         <div class="row align-items-center">
             <div class="col-lg-3 col-md-3">
                 <div class="logo">
-                    <a href="index.html"><img src="/assets/img/logo/logo-2.png" alt="exporso logo"></a>
+                    <a href="{{ route('home') }}"><img src="/assets/img/logo/logo-2.png" alt="exporso logo"></a>
                 </div>
             </div>
             <div class="col-lg-7 col-md-8">
@@ -72,8 +72,8 @@
                             </div>
                         </li>
                         <li class="cart_btn_wrapper">
-                            <a class="cart_btn" href="cart.html">view cart</a>
-                            <a class="cart_btn " href="checkout.html">checkout</a>
+                            <a class="cart_btn" href={{ route('cart') }}>view cart</a>
+                        <a class="cart_btn " href="{{ route('checkout') }}">checkout</a>
                         </li>
                     </ul>
                 </div>

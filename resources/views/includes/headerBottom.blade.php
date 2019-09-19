@@ -9,7 +9,8 @@
                             </li>
                             <li><a href="{{route('shop.index')}}">Shop</a>
                             </li>
-                            <li><a href="about-us.html">About</a></li>
+                            <li><a href="{{route('about-us')}}">About</a></li>
+<!--
                             <li><a href="blog.html">Blog <i class="zmdi zmdi-chevron-down"></i></a>
                                 <ul class="sub_menu">
                                     <li><a href="blog.html">Blog</a></li>
@@ -17,7 +18,9 @@
                                     <li><a href="blog-details.html">Blog Details</a></li>
                                 </ul>
                             </li>
-                            <li><a href="contact-us.html">CONTACT </a></li>
+-->
+                            <li><a href="{{route('contact-us')}}">CONTACT </a></li>
+<!--
                             <li class="mega_item"><a href="#">Features <i class="zmdi zmdi-chevron-down"></i></a>
                                 <ul class="mega_menu">
                                     <li><a href="#">Column1</a>
@@ -50,6 +53,7 @@
                                             <li><a href="404.html">404</a></li>
                                         </ul>
                                     </li>
+-->
                                 </ul>
                             </li>
                         </ul>
@@ -60,7 +64,7 @@
                 <div class="header_right_info">
                     <ul>
                         <li><a href="{{route('wishList.index')}}">Wishlist<span> <i class="zmdi zmdi-favorite-outline"></i> (0) </span></a></li>
-                        <li> <a href="#">Login</a></li>
+                        <li> <a href="{{route('login')}}">Login</a></li>
                     </ul>
                 </div>
             </div>
