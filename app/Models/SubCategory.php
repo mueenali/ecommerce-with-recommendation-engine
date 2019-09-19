@@ -38,16 +38,6 @@ class SubCategory extends Model
         'category_id' => 'integer'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        'name' => 'required|unique:sub_categories',
-        'category_id' => 'required'
-    ];
-
     public function category(){
         return $this->belongsTo('App\Models\Category');
     }

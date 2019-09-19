@@ -11,11 +11,28 @@
 |
 */
 
+Route::Auth();
 Route::get('/','HomeController@index')->name('home');
-Route::get('/shop', 'ProductsController@getAllProducts')->name('shop.index');
-Route::get('/product/{id}','ProductsController@getProduct')->name('product.index');
-Route::resource('/wishList', 'WishListController');
+Route::get('/shop','ProductsController@getAllProducts')->name('shop.index');
+Route::get('/product/{id}','ProductsController@getProduct')->name('product');
+Route::resource('/wishList', 'WishListController',['except' => ['show', 'create', 'edit' , 'update', 'destroy']]);
+Route::get('/wishList/remove/{id}', 'WishListController@destroy')->name("wishList.item.remove");
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('admin')->group(function () {
+    Route::resource('user', 'UserController', ['except' => ['show']]);
+    Route::resource('category', 'AdminCategoryController', ['except' => ['show']]);
+    Route::resource('subCategory', 'AdminSubCategoryController', ['except' =>['show']]);
+    Route::resource('product', 'AdminProductController' , ['except' => ['show']]);
+    Route::get('dashboard', 'AdminController@index')->name('admin.index');
+    Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+    Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+    Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+});
+
+
+
+
+
+
+

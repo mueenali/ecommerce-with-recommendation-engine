@@ -8,6 +8,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="wishlist-table table-responsive">
+                            @if($wishLists)
                             <table>
                                 <thead>
                                 <tr>
@@ -20,24 +21,20 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($wishLists as $key => $value)
                                 <tr>
-                                    <td class="pro-remove"><a href="#">×</a></td>
+                                    <td class="pro-remove"><a href="{{ route('wishList.item.remove', $value->id) }}">X</a></td>
+
                                     <td class="pro-thumbnail"><a href="#"><img src="assets/img/product/pro_sm_1.png" alt="" /></a></td>
-                                    <td class="pro-title"><a href="#">Le Parc Minotti Chair</a></td>
-                                    <td class="pro-price"><span class="amount">$169.00</span></td>
-                                    <td class="pro-stock-stauts"><span class="in-stock">in stock</span></td>
-                                    <td class="pro-add-to-cart"><a href="#" class="add-to-cart">add to cart</a></td>
-                                </tr>
-                                <tr>
-                                    <td class="pro-remove"><a href="#">×</a></td>
-                                    <td class="pro-thumbnail"><a href="#"><img src="assets/img/product/pro_sm_1.png" alt="" /></a></td>
-                                    <td class="pro-title"><a href="#">DSR Eiffel chair</a></td>
-                                    <td class="pro-price"><span class="amount">$137.00</span></td>
-                                    <td class="pro-stock-stauts"><span class="out-stock">out stock</span></td>
+                                    <td class="pro-title"><a href="#">{{$value->product->name}}</a></td>
+                                    <td class="pro-price"><span class="amount">${{$value->product->price}}</span></td>
+                                    <td class="pro-stock-stauts"><span class="in-stock">{{$value->product->availability}}</span></td>
                                     <td class="pro-add-to-cart"><a href="#" class="add-to-cart">add to cart</a></td>
                                 </tr>
                                 </tbody>
+                                @endforeach
                             </table>
+                                @endif
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\WishlistItem;
+use App\Helper\Helper;
+use App\Repositories\WishlistItemRepository;
+use App\Repositories\WishlistRepository;
 use Illuminate\Http\Request;
 
 class WishListController extends Controller
@@ -11,9 +14,17 @@ class WishListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /** @var  WishlistRepository */
+    private $wishlistRepository;
+    public function __construct(WishlistRepository $wishlistRepo)
+    {
+        $this->wishlistRepository = $wishlistRepo;
+    }
+
     public function index()
     {
-        return view('app.wishList');
+        $wishLists = $this->wishlistRepository->findBy('user_id', Helper::currentUser()->id);
+        return view('app.wishList')->with('wishLists', $wishLists);
     }
 
     /**
@@ -21,6 +32,7 @@ class WishListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
 
@@ -34,7 +46,9 @@ class WishListController extends Controller
      */
     public function store(Request $request)
     {
-
+        $data = ['user_id' => Helper::currentUser()->id, 'product_id' => $request->input('product_id')];
+        $this->wishlistRepository->create($data);
+        return redirect()->back();
     }
 
     /**
@@ -45,7 +59,7 @@ class WishListController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -77,8 +91,11 @@ class WishListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
-        //
+//        dd($id);
+        $this->wishlistRepository->delete($id);
+        return  redirect()->back();
     }
 }

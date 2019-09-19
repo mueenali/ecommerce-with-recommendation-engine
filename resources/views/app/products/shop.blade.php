@@ -93,13 +93,19 @@
                                                         <div class="single__product">
                                                             <span class="pro_badge">Sale</span>
                                                             <div class="produc_thumb">
-                                                                <a href="{{route('product.index',$product->id)}}"><img src="assets/img/product/home2/4.png" alt=""></a>
+                                                                <a href="{{route('product',$product->id)}}"><img src="assets/img/product/home2/4.png" alt=""></a>
                                                             </div>
                                                             <div class="product_hover">
                                                                 <div class="product_action">
                                                                     <a href="#" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                                                     <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
-                                                                    <a href="#" title="Compare"><i class="zmdi zmdi-refresh-alt"></i></a>
+                                                                    <div>
+                                                                        {!! Form::open(['method'=>'POST','action' => 'WishListController@store']) !!}
+                                                                        {{ Form::hidden('product_id',$product->id) }}
+                                                                        <button type="submit" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></button>
+                                                                        {!! Form::close() !!}
+                                                                    </div>
+                                                                    <a href="" title="Compare"><i class="zmdi zmdi-refresh-alt"></i></a>
                                                                 </div>
                                                                 <div class="product__desc">
                                                                     <h3><a href="{{route('product.index', $product->id)}}">{{$product->name}}</a></h3>

@@ -23,7 +23,8 @@ class Wishlist extends Model
 
 
     public $fillable = [
-        'user_id'
+        'user_id',
+        'product_id'
     ];
 
     /**
@@ -34,6 +35,7 @@ class Wishlist extends Model
     protected $casts = [
         'id' => 'integer',
         'user_id' => 'integer'
+        ,'product_id' => 'integer'
     ];
 
     /**
@@ -42,11 +44,16 @@ class Wishlist extends Model
      * @var array
      */
     public static $rules = [
-        'user_id' => 'required'
+        'user_id' => 'required',
+        'product_id' => 'required'
     ];
 
     public function user() {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\User');
+    }
+
+    public function product() {
+        return $this->belongsTo('App\Models\Product');
     }
 
 }

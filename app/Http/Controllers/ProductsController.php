@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\CategoryRepository;
-use App\Repositories\PhotoRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\SubCategoryRepository;
 use Illuminate\Http\Request;
@@ -31,6 +30,6 @@ class ProductsController extends Controller
         if(empty($product)) {
             return redirect('shop');
         }
-        return view('app.products.product', compact('product'));
+        return view('app.products.product')->with('product', $product);
     }
 }
