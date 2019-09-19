@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string description
  * @property integer price
  * @property integer quantity
+ * @property string brand
  */
 class Product extends Model
 {
@@ -31,6 +32,7 @@ class Product extends Model
         'price',
         'quantity',
         'availability',
+        'brand',
         'sub_category_id'
     ];
 
@@ -53,23 +55,24 @@ class Product extends Model
         'description' => 'string',
         'price' => 'double',
         'quantity' => 'integer',
+        'brand' => 'string',
         'availability' =>'string',
-        'category_id' =>'integer',
+        'sub_category_id' =>'integer',
     ];
 
     /**
-     * Validation rules
+     * Set the user's availability.
      *
-     * @var array
+     * @param  string  $value
+     * @return void
      */
-    public static $rules = [
-        'name' => 'required',
-        'description' => 'required',
-        'price' => 'required',
-        'quantity' => 'required',
-        'brand' => 'required',
-        'category_id' => 'required'
-    ];
-
-
+    public function setAvailabilityAttribute($value)
+    {
+        $quantity = $this->attributes['quantity'];
+        if($quantity > 0) {
+            $this->attributes['availability'] = 'In Stock';
+        }else {
+            $this->attributes['availability'] = 'Out of Stock';
+        }
+    }
 }

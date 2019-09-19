@@ -48,6 +48,7 @@ class AdminProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        $request->request->add(['availability' => 'In Stock']);
         $this->productRepository->create($request->all());
         return redirect()->route('product.index')->withStatus(__('Product successfully created.'));
     }
