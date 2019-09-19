@@ -36,23 +36,6 @@ class Category extends Model
         'name' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        'name' => 'required|unique:categories'
-    ];
-
-    public function messages()
-    {
-        return [
-            'name' =>[
-                'unique' => 'The category already exists'
-            ]
-        ];
-    }
     public function subCategories(){
         return $this->hasMany('App\Models\SubCategory');
     }

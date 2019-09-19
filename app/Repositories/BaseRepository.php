@@ -152,6 +152,11 @@ abstract class BaseRepository
         return $query->find($id, $columns);
     }
 
+    public function findBy($column,$predicate) {
+        $query = $this->model->newQuery();
+        return $query->where($column, $predicate)->get();
+    }
+
     /**
      * Update model record for given id
      *
