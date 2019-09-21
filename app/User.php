@@ -40,4 +40,7 @@ class User extends Authenticatable
     public function wishLists() {
         return $this->hasMany('App\Models\Wishlist');
     }
+    public function cart() {
+        return $this->hasOne('App\Models\Cart');
+    }
 }

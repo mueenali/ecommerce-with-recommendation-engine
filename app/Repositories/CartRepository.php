@@ -3,17 +3,16 @@
 namespace App\Repositories;
 
 use App\Helpers\Helper;
-use App\Models\Photo;
-use App\Models\Product;
+use App\Models\Cart;
 use App\Repositories\BaseRepository;
 
 /**
- * Class ProductRepository
+ * Class CartRepository
  * @package App\Repositories
- * @version September 1, 2019, 9:38 am UTC
+ * @version September 20, 2019, 11:26 pm UTC
 */
 
-class ProductRepository extends BaseRepository
+class CartRepository extends BaseRepository
 {
     /**
      * @var array
@@ -27,25 +26,21 @@ class ProductRepository extends BaseRepository
      *
      * @return array
      */
-
-    public function createPhotosForProduct($product, $photos){
-        foreach ($photos as $photo){
-            $path = Helper::upload($photo, 'images');
-            $product->photos()->create(['url' => $path]);
-        }
-        return $product;
-    }
-
     public function getFieldsSearchable()
     {
         return $this->fieldSearchable;
     }
 
+    public function hasCart() {
+        $userId = Helper::current_user()->id;
+        $cart = $this->model->newQuery()->where('user_id',$userId )->firstOrCreate(['user_id' => $userId]);
+        return $cart;
+    }
     /**
      * Configure the Model
      **/
     public function model()
     {
-        return Product::class;
+        return Cart::class;
     }
 }

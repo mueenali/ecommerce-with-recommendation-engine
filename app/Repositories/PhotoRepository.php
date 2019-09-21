@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Helper\Helper;
+use App\Helpers\Helper;
 use App\Models\Photo;
 use App\Repositories\BaseRepository;
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Helper\Helper;
+use App\Helpers\Helper;
 
 return [
 
@@ -169,7 +169,7 @@ return [
         \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
         \InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
-        Helper::class,
+        App\Providers\HelperServiceProvider::class,
 
         /*
          * Package Service Providers...

@@ -3,7 +3,6 @@
 @section('content')
     <!-- PAGE SECTION START -->
     <div class="page-section section ptb-100">
-        <form action="#">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -23,7 +22,14 @@
                                 <tbody>
                                 @foreach($wishLists as $key => $value)
                                 <tr>
-                                    <td class="pro-remove"><a href="{{ route('wishList.item.remove', $value->id) }}">X</a></td>
+                                    <td class="pro-remove"> <form action="{{ route('wishList.destroy', $value->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="button" onclick="confirm('{{ __("Are you sure you want to delete this product?") }}') ? this.parentElement.submit() : ''">
+                                            {{ __('×') }}
+                                        </button>
+                                    </form>
+                                    </td>
                                     <td class="pro-thumbnail"><a href="#"><img src="assets/img/product/pro_sm_1.png" alt="" /></a></td>
                                     <td class="pro-title"><a href="#">{{$value->product->name}}</a></td>
                                     <td class="pro-price"><span class="amount">${{$value->product->price}}</span></td>
@@ -42,7 +48,6 @@
                     </div>
                 </div>
             </div>
-        </form>
     </div>
     <!-- PAGE SECTION END -->
 @endsection

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Helper;
+namespace App\Helpers;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +18,7 @@ class Helper
         unlink(public_path() . '/' . $path);
     }
 
-    public static function currentUser () {
+    public static function current_user () {
         return Auth::user();
     }
 }

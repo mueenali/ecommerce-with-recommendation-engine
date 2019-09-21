@@ -13,10 +13,10 @@
 
 Route::Auth();
 Route::get('/','HomeController@index')->name('home');
-Route::get('/shop','ProductsController@getAllProducts')->name('shop.index');
-Route::get('/product/{id}','ProductsController@getProduct')->name('product');
-Route::resource('/wishList', 'WishListController',['except' => ['show', 'create', 'edit' , 'update', 'destroy']]);
-Route::get('/wishList/remove/{id}', 'WishListController@destroy')->name("wishList.item.remove");
+Route::get('shop','ProductsController@getAllProducts')->name('shop.index');
+Route::get('product/{id}','ProductsController@getProduct')->name('item');
+Route::resource('wishList', 'WishListController',['except' => ['show', 'create', 'edit' , 'update']]);
+Route::resource('cart', 'ShoppingCartController', ['except' => ['show']]);
 
 
 Route::prefix('admin')->group(function () {

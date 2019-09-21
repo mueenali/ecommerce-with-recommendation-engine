@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\WishlistItem;
-use App\Helper\Helper;
+use App\Helpers\Helper;
 use App\Repositories\WishlistItemRepository;
 use App\Repositories\WishlistRepository;
 use Illuminate\Http\Request;
@@ -23,7 +23,7 @@ class WishListController extends Controller
 
     public function index()
     {
-        $wishLists = $this->wishlistRepository->findBy('user_id', Helper::currentUser()->id);
+        $wishLists = $this->wishlistRepository->findBy('user_id', Helper::current_user()->id);
         return view('app.wishList')->with('wishLists', $wishLists);
     }
 
@@ -46,7 +46,7 @@ class WishListController extends Controller
      */
     public function store(Request $request)
     {
-        $data = ['user_id' => Helper::currentUser()->id, 'product_id' => $request->input('product_id')];
+        $data = ['user_id' => Helper::current_user()->id, 'product_id' => $request->input('product_id')];
         $this->wishlistRepository->create($data);
         return redirect()->back();
     }

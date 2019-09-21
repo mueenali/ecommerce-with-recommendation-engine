@@ -22,17 +22,6 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="sidebar_widget mb-50">
-                                        <div class="widget_title">
-                                            <h3>Price</h3>
-                                        </div>
-                                        <div class="widget_price">
-                                            <div class="sidebar-price">
-                                                <div id="price-range"></div>
-                                                <input type="text" id="price-amount" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-9 col-md-12 col-12 shop_details">
@@ -93,22 +82,26 @@
                                                         <div class="single__product">
                                                             <span class="pro_badge">Sale</span>
                                                             <div class="produc_thumb">
-                                                                <a href="{{route('product',$product->id)}}"><img src="assets/img/product/home2/4.png" alt=""></a>
+                                                                <a href="{{route('item',$product->id)}}"><img src="assets/img/product/home2/4.png" alt=""></a>
                                                             </div>
                                                             <div class="product_hover">
                                                                 <div class="product_action">
-                                                                    <a href="#" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-                                                                    <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
+                                                                    <div>
+                                                                        {!! Form::open(['method'=>'POST','action' => 'ShoppingCartController@store']) !!}
+                                                                        {{ Form::hidden('product_id',$product->id)}}
+                                                                         {{Form::hidden('quantity', 1)}}
+                                                                        <button type="submit" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></button>
+                                                                        {!! Form::close() !!}
+                                                                    </div>
                                                                     <div>
                                                                         {!! Form::open(['method'=>'POST','action' => 'WishListController@store']) !!}
                                                                         {{ Form::hidden('product_id',$product->id) }}
                                                                         <button type="submit" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></button>
                                                                         {!! Form::close() !!}
                                                                     </div>
-                                                                    <a href="" title="Compare"><i class="zmdi zmdi-refresh-alt"></i></a>
                                                                 </div>
                                                                 <div class="product__desc">
-                                                                    <h3><a href="{{route('product.index', $product->id)}}">{{$product->name}}</a></h3>
+                                                                    <h3><a href="{{route('item', $product->id)}}">{{$product->name}}</a></h3>
                                                                     <div class="price_amount">
                                                                         <span class="current_price">${{$product->price}}</span>
                                                                     </div>

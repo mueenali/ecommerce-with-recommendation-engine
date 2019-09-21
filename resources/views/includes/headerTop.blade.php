@@ -38,7 +38,7 @@
                     <ul class="mini_cart_box">
                         <li class="single_product_cart">
                             <div class="cart_img">
-                                <a href="product-details.html"><img src="/assets/img/product/pro_sm_1.png" alt=""></a>
+                                <a href="#"><img src="/assets/img/product/pro_sm_1.png" alt=""></a>
                             </div>
                             <div class="cart_title">
                                 <h5><a href="product-details.html"> Soffer Pro x33</a></h5>
@@ -72,7 +72,7 @@
                             </div>
                         </li>
                         <li class="cart_btn_wrapper">
-                            <a class="cart_btn" href="cart.html">view cart</a>
+                            <a class="cart_btn" href="{{route('cart.index')}}">view cart</a>
                             <a class="cart_btn " href="checkout.html">checkout</a>
                         </li>
                     </ul>
