@@ -1,3 +1,4 @@
+
 <div class="header_bottom">
     <div class="container">
         <div class="row">
@@ -10,47 +11,20 @@
                             <li><a href="{{route('shop.index')}}">Shop</a>
                             </li>
                             <li><a href="about-us.html">About</a></li>
-                            <li><a href="blog.html">Blog <i class="zmdi zmdi-chevron-down"></i></a>
-                                <ul class="sub_menu">
-                                    <li><a href="blog.html">Blog</a></li>
-                                    <li><a href="blog-sidebar.html">Blog Sidebar</a></li>
-                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="contact-us.html">CONTACT </a></li>
-                            <li class="mega_item"><a href="#">Features <i class="zmdi zmdi-chevron-down"></i></a>
+                            <li class="mega_item"><a href="#">Categories<i class="zmdi zmdi-chevron-down"></i></a>
+                                @if(\App\Helpers\Helper::getCategories())
                                 <ul class="mega_menu">
-                                    <li><a href="#">Column1</a>
+                                    @foreach(\App\Helpers\Helper::getCategories() as $category)
+                                    <li><a href="#">{{$category->name}}</a>
+                                        @foreach($category->subCategories as $subCategory)
                                         <ul class="mega_dropdown">
-                                            <li><a href="shop.html">Shop </a></li>
-                                            <li><a href="shop-list.html">Shop List</a></li>
-                                            <li><a href="shop-right-sidebar.html">Shop Right Sidebar </a></li>
-                                            <li><a href="shop-without-sidebar.html">Shop without Sidebar </a></li>
-                                            <li><a href="shop-list-without-sidebar.html">Shop List without Sidebar </a></li>
-                                            <li><a href="product-details.html">Product Details</a></li>
+                                            <li><a href="shop.html">{{$subCategory->name}}</a></li>
                                         </ul>
+                                        @endforeach
                                     </li>
-                                    <li><a href="#">Column2</a>
-                                        <ul class="mega_dropdown">
-                                            <li><a href="product-details-sidebar.html">product Details Sidebar</a></li>
-                                            <li><a href="cart.html">Cart</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="wishlist.html">wishlist</a></li>
-                                            <li><a href="my-account.html">My account</a></li>
-                                            <li><a href="login.html">login</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Column3</a>
-                                        <ul class="mega_dropdown">
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-sidebar.html">Blog Sidebar</a></li>
-                                            <li><a href="blog-details.html">Blog Details</a></li>
-                                            <li><a href="about-us.html">About Us </a></li>
-                                            <li><a href="contact-us.html">Contact Us </a></li>
-                                            <li><a href="404.html">404</a></li>
-                                        </ul>
-                                    </li>
+                                    @endforeach
                                 </ul>
+                                @endif
                             </li>
                         </ul>
                     </nav>
@@ -59,7 +33,7 @@
             <div class="col-lg-4 col-12">
                 <div class="header_right_info">
                     <ul>
-                        <li><a href="{{route('wishList.index')}}">Wishlist<span> <i class="zmdi zmdi-favorite-outline"></i> (0) </span></a></li>
+                        <li><a href="{{route('wishList.index')}}">Wishlist<span> <i class="zmdi zmdi-favorite-outline"></i> {{\App\Helpers\Helper::getWishListsCount()}}</span></a></li>
                         <li> <a href="#">Login</a></li>
                     </ul>
                 </div>

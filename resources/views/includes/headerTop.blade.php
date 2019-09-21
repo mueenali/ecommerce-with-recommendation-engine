@@ -33,42 +33,29 @@
                 <div class="mini_cart_box_wrapper text-right">
                     <a href="#">
                         <img src="/assets/img/icon/cart-2.png" alt="Mini Cart Icon">
-                        <span class="cart_count">02</span>
+                        <span class="cart_count">{{\App\Helpers\Helper::getCartItemsCount()}}</span>
                     </a>
                     <ul class="mini_cart_box">
+                        @foreach(\App\Helpers\Helper::current_user()->cart->cartItems as $item)
                         <li class="single_product_cart">
                             <div class="cart_img">
                                 <a href="#"><img src="/assets/img/product/pro_sm_1.png" alt=""></a>
                             </div>
                             <div class="cart_title">
-                                <h5><a href="product-details.html"> Soffer Pro x33</a></h5>
-                                <h6><a href="#">Black</a></h6>
-                                <span>$95.00 x 1</span>
+                                <h5><a href="product-details.html">{{$item->product->name}}</a></h5>
+                                <span>${{$item->price}} x {{$item->quantity}}</span>
                             </div>
                             <div class="cart_delete">
                                 <a href="#"><i class="zmdi zmdi-delete"></i></a>
                             </div>
                         </li>
-                        <li class="single_product_cart">
-                            <div class="cart_img">
-                                <a href="product-details.html"><img src="/assets/img/product/pro_sm_2.png" alt=""></a>
-                            </div>
-                            <div class="cart_title">
-                                <h5><a href="product-details.html"> Lotafaj una khdii</a></h5>
-                                <h6><a href="#">Black</a></h6>
-                                <span>$85.00 x 1</span>
-                            </div>
-                            <div class="cart_delete">
-                                <a href="#"><i class="zmdi zmdi-delete"></i></a>
-                            </div>
-                        </li>
-
+                        @endforeach
                         <li class="cart_space">
                             <div class="cart_sub">
-                                <h4>Subtotal</h4>
+                                <h4>Total</h4>
                             </div>
                             <div class="cart_price">
-                                <h4>$180.00</h4>
+                                <h4>{{\App\Helpers\Helper::current_user()->cart->total}}</h4>
                             </div>
                         </li>
                         <li class="cart_btn_wrapper">

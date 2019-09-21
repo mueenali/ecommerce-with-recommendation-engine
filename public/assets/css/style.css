@@ -5,9 +5,9 @@
     Version: 1.0
 
 -----------------------------------------------------------------------------------
-    
-    [Table of contents] 
-	
+
+    [Table of contents]
+
     1. Template default css (assets/css/bundle.css)
     2. Header css here
     3. Navigation Css here
@@ -21,7 +21,7 @@
     11. Footer css here
     12. Home 2 css here
     13. home 2 slider css here
-    14. Mini cart box css here 
+    14. Mini cart box css here
     15. Mobile menu css here
     16. Breadcrumb css here
     17. pagination css here
@@ -38,7 +38,7 @@
     28. Login + my account page css here
     29. error page css here
 
-   
+
 -----------------------------------------------------------------------------------*/
 
 /*====== 2. Header css here ======*/
@@ -124,7 +124,7 @@ header {
     opacity: 1;
     visibility: visible;
     margin-top: 0;
-} 
+}
 .header_right_info ul.sub__menu li a {
     border-bottom: 1px solid #f1f1f1;
     color: #151320;
@@ -469,7 +469,7 @@ header {
   margin: 0 3px;
   width: 12px;
   -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;   
+  transition: all 0.3s ease 0s;
 }
 .slider-active .owl-dots > div:hover,.slider-active .owl-dots > div.active{
     background: #fa0f07;
@@ -1926,7 +1926,7 @@ input.cart-plus-minus-box {
   line-height: 1;
   margin-right: 15px;
   padding-right: 15px;
-} 
+}
 .single_post_left_meta li:last-child, .single_post_right_meta > ul li:last-child {
     border-right: 0 none;
     margin-right: 0;
@@ -2113,7 +2113,7 @@ blockquote {
   right: 0;
   width: 50px;
   -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;  
+  transition: all 0.3s ease 0s;
 }
 .search_form button:hover {
   background: #f6563c;
@@ -2214,7 +2214,7 @@ blockquote {
   font-size: 24px;
   font-weight: 400;
   margin: 0;
-} 
+}
 .fun-icon {
   padding-bottom: 20px;
 }
@@ -3358,7 +3358,7 @@ h5.panel-title {
 	top: 0;
 }
 .error_form form button:hover{
-   color: #ea3a3c; 
+   color: #ea3a3c;
 }
 .error_form a {
 	color: #fff;

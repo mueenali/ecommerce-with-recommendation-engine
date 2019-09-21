@@ -1,6 +1,33 @@
 @extends('layouts.app.appLayout')
 
 @section('content')
+    <div class="col-12">
+        @if (session('status'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('status') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+    </div>
+    <div class="col-12">
+        @if (session('errors'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('errors') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+    </div>
+    @if ($errors->has('quantity'))
+        <div class="alert alert-danger">
+            <ul>
+                <li>{{ $errors->first('quantity') }}</li>
+            </ul>
+        </div>
+    @endif
                 @if($product)
                 <!--product Details Inner-->
                 <div class="product_details_inner left_sidebar ptb-110">
@@ -70,13 +97,16 @@
                                         <div class="price_amount">
                                             <span class="current_price">${{$product->price}}</span>
                                         </div>
+                                        {!! Form::open(['method'=>'POST','action' => 'ShoppingCartController@store']) !!}
                                         <div class="single_product_action d-flex align-items-center">
                                             <div class="cart-plus-minus">
-                                                <input type="text" value="01" name="qtybutton" class="cart-plus-minus-box">
+                                                <input type="text" value="01" name="quantity" class="cart-plus-minus-box">
                                             </div>
                                             <div class="add_to_cart_btn">
-                                                <a href="#">add to cart</a>
+                                                {{ Form::hidden('product_id',$product->id)}}
+                                                <a href="#" onclick="confirm('{{ __("Are you sure you want to delete this product?") }}') ? this.parentElement.submit() : ''">add to cart</a>
                                             </div>
+                                            {!! Form::close() !!}
                                             <div class="wishlist">
                                                 <a href="#"><i class="zmdi zmdi-favorite-outline"></i></a>
                                             </div>

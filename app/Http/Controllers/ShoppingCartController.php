@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Helper;
 use App\Http\Requests\CreateCartItemRequest;
 use App\Http\Requests\UpdateCartItemRequest;
 use App\Repositories\CartItemRepository;
 use App\Repositories\CartRepository;
-use App\Repositories\ProductRepository;
-use Illuminate\Http\Request;
+
 
 class ShoppingCartController extends Controller
 {
@@ -17,13 +15,10 @@ class ShoppingCartController extends Controller
     private $cartRepository;
     /** @var CartItemRepository */
     private $cartItemRepository;
-    /** @var ProductRepository */
-    private $productRepository;
-    public function __construct(CartRepository $cartRepo, CartItemRepository $cartItemRepo,ProductRepository $productRepo )
+    public function __construct(CartRepository $cartRepo, CartItemRepository $cartItemRepo)
     {
         $this->cartRepository = $cartRepo;
         $this->cartItemRepository = $cartItemRepo;
-        $this->productRepository = $productRepo;
     }
     /**
      * Display a listing of the resource.
@@ -57,9 +52,9 @@ class ShoppingCartController extends Controller
         $cart = $this->cartRepository->hasCart();
         $result = $this->cartItemRepository->addCartItem($cart, $request->input('product_id'), $request->input('quantity'));
         if($result  == 'More than 10') {
-            return redirect()->back()->withStatus(__('You cannot add more than 10 items per kind'));
-        }else if ('Not enough') {
-            return redirect()->back()->withStatus(__('Quantity not enoguh'));
+            return redirect()->back()->withErrors(['error' => 'You cannot add more than 10 items per kind']);
+        }else if ($result  == 'Not enough') {
+            return redirect()->back()->withErrors(['error' => 'Quantity not enough']);
         } else {
             return redirect()->back()->withStatus(__('Product successfully added to your cart.'));
         }
@@ -98,7 +93,7 @@ class ShoppingCartController extends Controller
     {
         $result = $this->cartItemRepository->updateCartItem($id, $request->input('quantity'));
         if(!$result) {
-            return redirect()->back()->withStatus(__('Quantity not enough.'));
+            return redirect()->back()->withErrors(['error' => 'Quantity not enough.']);
         }
         return redirect()->back()->withStatus(__('Cart successfully updated.'));
     }

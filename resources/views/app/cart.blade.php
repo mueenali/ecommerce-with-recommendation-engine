@@ -6,6 +6,33 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
+                        @if (session('status'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('status') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="col-12">
+                        @if (session('errors'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('errors') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                    </div>
+                    @if ($errors->has('quantity'))
+                        <div class="alert alert-danger">
+                            <ul>
+                                <li>{{ $errors->first('quantity') }}</li>
+                            </ul>
+                        </div>
+                    @endif
+                    <div class="col-12">
                         <div class="cart-table table-responsive mb-40">
                             <table>
                                 <thead>

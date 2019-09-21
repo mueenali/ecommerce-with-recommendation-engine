@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
-use App\Repositories\SubCategoryRepository;
-use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
@@ -31,5 +29,11 @@ class ProductsController extends Controller
             return redirect('shop');
         }
         return view('app.products.product')->with('product', $product);
+    }
+
+    public function getAllProductsByCategory($id) {
+        $products = $this->productsRepository->findBy('sub_category_id', $id);
+        $categories = $this->categoriesRepository->all();
+        return view('app.products.shop',compact('products','categories'));
     }
 }
