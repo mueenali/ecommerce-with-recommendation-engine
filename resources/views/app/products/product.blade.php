@@ -104,7 +104,7 @@
                                             </div>
                                             <div class="add_to_cart_btn">
                                                 {{ Form::hidden('product_id',$product->id)}}
-                                                <a href="#" onclick="confirm('{{ __("Are you sure you want to delete this product?") }}') ? this.parentElement.submit() : ''">add to cart</a>
+                                                <a href="#" onclick="confirm('{{ __("Are you sure you want to add this product to your cart?") }}') ? this.parentElement.submit() : ''">add to cart</a>
                                             </div>
                                             {!! Form::close() !!}
                                             <div class="wishlist">
@@ -277,7 +277,6 @@
                         </div>
                          <!--Realted Product section start-->
                         <div class="related_product_section mt-100">
-
                             <div class="row">
                                 <div class="col-12">
                                     <div class="section_title">
@@ -289,7 +288,7 @@
                                 <div class="col-lg-3">
                                     <div class="single__product">
                                         <div class="produc_thumb">
-                                            <a href="#"><img src="assets/img/product/home2/4.png" alt=""></a>
+                                            <a href="#"><img src="/assets/img/product/home2/4.png" alt=""></a>
                                         </div>
                                         <div class="product_hover">
                                             <div class="product_action">
@@ -311,7 +310,7 @@
                                 <div class="col-lg-3">
                                     <div class="single__product">
                                         <div class="produc_thumb">
-                                            <a href="#"><img src="assets/img/product/home2/5.png" alt=""></a>
+                                            <a href="#"><img src="/assets/img/product/home2/5.png" alt=""></a>
                                         </div>
                                         <div class="product_hover">
                                             <div class="product_action">
@@ -333,7 +332,7 @@
                                 <div class="col-lg-3">
                                     <div class="single__product">
                                         <div class="produc_thumb">
-                                            <a href="#"><img src="assets/img/product/home2/6.png" alt=""></a>
+                                            <a href="#"><img src="/assets/img/product/home2/6.png" alt=""></a>
                                         </div>
                                         <div class="product_hover">
                                             <div class="product_action">
@@ -355,7 +354,7 @@
                                 <div class="col-lg-3">
                                     <div class="single__product">
                                         <div class="produc_thumb">
-                                            <a href="#"><img src="assets/img/product/home2/7.png" alt=""></a>
+                                            <a href="#"><img src="/assets/img/product/home2/7.png" alt=""></a>
                                         </div>
                                         <div class="product_hover">
                                             <div class="product_action">
@@ -377,7 +376,7 @@
                                 <div class="col-lg-3">
                                     <div class="single__product">
                                         <div class="produc_thumb">
-                                            <a href="#"><img src="assets/img/product/home2/8.png" alt=""></a>
+                                            <a href="#"><img src="/assets/img/product/home2/8.png" alt=""></a>
                                         </div>
                                         <div class="product_hover">
                                             <div class="product_action">
@@ -399,7 +398,7 @@
                                 <div class="col-lg-3">
                                     <div class="single__product">
                                         <div class="produc_thumb">
-                                            <a href="#"><img src="assets/img/product/home2/9.png" alt=""></a>
+                                            <a href="#"><img src="/assets/img/product/home2/9.png" alt=""></a>
                                         </div>
                                         <div class="product_hover">
                                             <div class="product_action">

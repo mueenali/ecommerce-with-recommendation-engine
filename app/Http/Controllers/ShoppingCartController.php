@@ -86,12 +86,13 @@ class ShoppingCartController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\UpdateCartItemRequest  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCartItemRequest $request, $id)
+    public function update(UpdateCartItemRequest $request)
     {
-        $result = $this->cartItemRepository->updateCartItem($id, $request->input('quantity'));
+        $id = $request->input('item_id');
+        $productId = $request->input('product_id');
+        $result = $this->cartItemRepository->updateCartItem($id, $request->input('quantity'), $productId);
         if(!$result) {
             return redirect()->back()->withErrors(['error' => 'Quantity not enough.']);
         }

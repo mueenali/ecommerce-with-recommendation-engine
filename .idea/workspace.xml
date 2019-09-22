@@ -2,26 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60f6b22d-6330-4f2e-9210-eb42c78d2c2a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/AddressController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminUserController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/AddressRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Address.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/AddressRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/envVars.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2019_09_22_120348_create_addresses_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/stripe.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/stripe.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/model_schemas/Address.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/app/addresses/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/app/checkout.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/app/payment.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/app/userDashboard.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/EcommerceAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/EcommerceAPI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Helpers/Helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/Helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ShoppingCartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShoppingCartController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CreateCartItemRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CreateCartItemRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Requests/UpdateCartItemRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateCartItemRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/SubCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/SubCategory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/CartItemRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/CartItemRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/app/cart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/cart.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/app/products/product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/products/product.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/app/products/shop.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/app/products/shop.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/head.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/includes/headerBottom.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/headerBottom.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/includes/headerTop.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/headerTop.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/scripts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/scripts.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,6 +52,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
         <option value="blade" />
       </list>
     </option>
@@ -140,6 +155,7 @@
       <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
       <path value="$PROJECT_DIR$/vendor/cviebrock/eloquent-sluggable" />
       <path value="$PROJECT_DIR$/vendor/cocur/slugify" />
+      <path value="$PROJECT_DIR$/vendor/stripe/stripe-php" />
     </include_path>
   </component>
   <component name="ProjectId" id="1QBQdvMS4pAwvEnUA6fM3yzfOVz" />
@@ -152,6 +168,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../xdebug/php_xdebug.h" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -219,7 +236,8 @@
       <workItem from="1568858044205" duration="21428000" />
       <workItem from="1568896541866" duration="8647000" />
       <workItem from="1568921101043" duration="1389000" />
-      <workItem from="1569019204892" duration="33370000" />
+      <workItem from="1569019204892" duration="35153000" />
+      <workItem from="1569149044218" duration="20475000" />
     </task>
     <servers />
   </component>

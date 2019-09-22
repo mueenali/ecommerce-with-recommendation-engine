@@ -36,6 +36,7 @@
                         <span class="cart_count">{{\App\Helpers\Helper::getCartItemsCount()}}</span>
                     </a>
                     <ul class="mini_cart_box">
+                        @if(\App\Helpers\Helper::current_user())
                         @foreach(\App\Helpers\Helper::current_user()->cart->cartItems as $item)
                         <li class="single_product_cart">
                             <div class="cart_img">
@@ -60,8 +61,15 @@
                         </li>
                         <li class="cart_btn_wrapper">
                             <a class="cart_btn" href="{{route('cart.index')}}">view cart</a>
-                            <a class="cart_btn " href="checkout.html">checkout</a>
+                            <a class="cart_btn " href="{{route('checkout.index')}}">checkout</a>
                         </li>
+                        @else
+                            <li class="cart_space">
+                                <div class="cart_sub">
+                                    <h4>Login to view your cart</h4>
+                                </div>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>

@@ -45,16 +45,16 @@ class CartItemRepository extends BaseRepository
         return $cartItem->delete();
     }
 
-    public function updateCartItem($id, $quantity) {
-        $cartItem = $this->findOrFail($id);
+    public function updateCartItem($id, $quantity, $productId) {
+        $cartItem = $this->find($id);
         $cart = Helper::current_user()->cart;
-        $product = Product::find($id);
-        $totalQuantity = $cartItem + $quantity;
-        if($totalQuantity > $product->quantity) {
+        $product = Product::find($productId);
+        if($quantity > $product->quantity) {
             return false;
         }
-        $cartItem->quantity = $totalQuantity;
-        $cartItem->price = $totalQuantity * $product->price;
+        $cartItem->quantity = $quantity;
+        $cart->total -= $cartItem->price;
+        $cartItem->price = $quantity * $product->price;
         $cartItem->save();
         $cart->total += $quantity * $product->price;
         $cart->save();

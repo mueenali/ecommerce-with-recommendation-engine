@@ -3,11 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\CartItem;
 
-class CreateCartItemRequest extends FormRequest
+class AddressRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,8 +24,12 @@ class CreateCartItemRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_id' => 'required',
-            'quantity' => 'required|numeric|max:10',
+            'user_id' => 'required',
+            'country' => 'required',
+            'street_address' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'postcode' => 'required|numeric'
         ];
     }
 }

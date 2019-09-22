@@ -24,7 +24,7 @@ class UpdateCartItemRequest extends FormRequest
     public function rules()
     {
         return [
-            'quantity' => 'required|max:10'
+            'quantity' => 'required|numeric|max:10'
         ];
     }
 }
