@@ -46,6 +46,7 @@ class ProductRepository extends BaseRepository
         foreach ($cartItems as $cartItem) {
             $product = $cartItem->product;
             $product->quantity -= $cartItem->quantity;
+            $product->times_bought += 1;
             $product->save();
         }
     }

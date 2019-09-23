@@ -29,6 +29,8 @@ Route::prefix('user')->group(function () {
     Route::resource('address', 'AddressController', ['except' => 'show', 'index', 'destroy']);
     Route::get('address/remove/{id}', 'AddressController@destroy')->name('address.destroy');
     Route::get('order/{id}','UserController@viewOrder')->name('order.show');
+    Route::get('review/product/{id}','UserController@createReview')->name('review.create');
+    Route::post('review/product/store', 'UserController@storeReview')->name('review.store');
 });
 
 Route::prefix('admin')->group(function () {

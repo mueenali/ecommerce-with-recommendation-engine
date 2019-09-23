@@ -6,29 +6,27 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class OrderItem
+ * Class Review
  * @package App\Models
- * @version September 23, 2019, 3:01 pm UTC
+ * @version September 23, 2019, 7:15 pm UTC
  *
  */
-class OrderItem extends Model
+class Review extends Model
 {
     use SoftDeletes;
 
-    public $table = 'order_items';
+    public $table = 'reviews';
 
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
+        'user_id',
         'product_id',
-        'order_id',
-        'quantity',
-        'total_price'
-        ,'reviewed'
+        'review',
+        'rating'
     ];
-
     /**
      * The attributes that should be casted to native types.
      *
@@ -50,7 +48,5 @@ class OrderItem extends Model
     public function product() {
         return $this->belongsTo('App\Models\Product');
     }
-    public function order() {
-        return $this->belongsTo('App\Models\Order');
-    }
+
 }

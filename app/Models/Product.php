@@ -59,6 +59,10 @@ class Product extends Model
         'sub_category_id' =>'integer',
     ];
 
+    public function reviews() {
+        return $this->hasMany('App\Models\Review');
+    }
+
     /**
      * Set the user's availability.
      *

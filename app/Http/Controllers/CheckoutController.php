@@ -61,6 +61,8 @@ class CheckoutController extends Controller
        foreach ($user->cart->cartItems as $cartItem) {
            $this->cartItemRepository->delete($cartItem->id);
        }
-        return redirect('')->withStatus(__('Order successfully Placed.'));
+       $user->cart->total = 0;
+       $user->cart->save();
+       return redirect('')->withStatus(__('Order successfully Placed.'));
     }
 }

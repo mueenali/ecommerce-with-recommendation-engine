@@ -178,7 +178,7 @@
                                     <div class="col-sm-12">
                                         <ul class="product_desc_tab nav" role="tablist">
                                             <li><a class="active" data-toggle="tab" href="#dtail">Description</a></li>
-                                            <li><a data-toggle="tab" href="#review">Reviews 1</a></li>
+                                            <li><a data-toggle="tab" href="#review">Reviews</a></li>
                                         </ul>
                                         <!-- Product Thumbnail Tab Content Start -->
                                         <div class="tab-content thumb-content mt-30">
@@ -191,21 +191,6 @@
                                                     <div class="group-title">
                                                         <h2>customer review</h2>
                                                     </div>
-                                                    <ul class="review-list">
-                                                        <!-- Single Review List Start -->
-
-                                                        <!-- Single Review List Start -->
-                                                        <li>
-                                                            <span>value</span>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <label>Posted on 12/20/18</label>
-                                                        </li>
-                                                        <!-- Single Review List End -->
-                                                    </ul>
                                                 </div>
                                                 <!-- Reviews End -->
                                                 <!-- Reviews Start -->
@@ -245,25 +230,7 @@
                                                         <!-- Single Review List End -->
                                                     </ul>
                                                     <!-- Reviews Field Start -->
-                                                    <div class="riview-field mt-40">
-                                                        <div class="review_comment_box_inner">
-                                                            <form action="#">
-                                                                <div class="form-group">
-                                                                    <label class="req" for="sure-name">Name</label>
-                                                                    <input type="text" id="sure-name" required="required">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="req" for="subject">Title of review</label>
-                                                                    <input type="text"  id="subject" required="required">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="req" for="comments">Your Review</label>
-                                                                    <textarea rows="5" id="comments" required="required"></textarea>
-                                                                </div>
-                                                                <button type="submit" class="customer-btn">Submit</button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
+
                                                     <!-- Reviews Field Start -->
                                                 </div>
                                                 <!-- Reviews End -->

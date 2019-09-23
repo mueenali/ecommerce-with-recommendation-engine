@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\OrderItem;
 use App\Repositories\BaseRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class OrderItemRepository
