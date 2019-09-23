@@ -2,18 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Helpers\Helper;
-use App\Models\Photo;
-use App\Models\Product;
+use App\Models\OrderItem;
 use App\Repositories\BaseRepository;
 
 /**
- * Class ProductRepository
+ * Class OrderItemRepository
  * @package App\Repositories
- * @version September 1, 2019, 9:38 am UTC
+ * @version September 23, 2019, 3:03 pm UTC
 */
 
-class ProductRepository extends BaseRepository
+class OrderItemRepository extends BaseRepository
 {
     /**
      * @var array
@@ -27,7 +25,6 @@ class ProductRepository extends BaseRepository
      *
      * @return array
      */
-
     public function getFieldsSearchable()
     {
         return $this->fieldSearchable;
@@ -38,15 +35,14 @@ class ProductRepository extends BaseRepository
      **/
     public function model()
     {
-        return Product::class;
+        return OrderItem::class;
     }
 
-    public function updateQuantity ($user) {
+    public function createOrderItem($user, $order) {
         $cartItems = $user->cart->cartItems;
         foreach ($cartItems as $cartItem) {
-            $product = $cartItem->product;
-            $product->quantity -= $cartItem->quantity;
-            $product->save();
+            $this->create(['product_id' => $cartItem->product->id,
+                'order_id' => $order->id, 'quantity' => $cartItem->quantity, 'total_price' => $cartItem->price]);
         }
     }
 }

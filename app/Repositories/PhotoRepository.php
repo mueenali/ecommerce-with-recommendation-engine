@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Helpers\Helper;
 use App\Models\Photo;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class PhotoRepository
@@ -30,19 +31,17 @@ class PhotoRepository extends BaseRepository
     {
         return $this->fieldSearchable;
     }
-    public function unlinkPhotos($photos) {
-        if (typeOf(array($photos))){
-            foreach ($photos->url as $url){
-                Helper::unlinkFiles($url);
-            }
-            return true;
-        }
-        Helper::unlinkFiles($photos->url);
-        return true;
-    }
+
     /**
      * Configure the Model
      **/
+
+    public function deletePhoto($id) {
+        $photo = $this->find($id);
+        Storage::disk('s3')->delete($photo->filename);
+        return $photo->delete();
+    }
+
     public function model()
     {
         return Photo::class;

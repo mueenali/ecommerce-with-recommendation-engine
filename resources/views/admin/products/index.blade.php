@@ -41,6 +41,7 @@
                                 <th scope="col">{{ __('Availability') }}</th>
                                 <th scope="col">{{ __('SubCategory') }}</th>
                                 <th scope="col">{{ __('Creation Date') }}</th>
+                                <th scope="col" >{{__('Photos')}}</th>
                                 <th scope="col"></th>
                             </tr>
                             </thead>
@@ -59,6 +60,7 @@
                                     @endif
                                     <td>{{ $product->subCategory->name}}</td>
                                     <td>{{ $product->created_at->format('d/m/Y H:i') }}</td>
+                                    <td><a href="{{route('photos.show', $product->id)}}">View Photos</a></td>
                                     <td class="text-right">
                                         <div class="dropdown">
                                             <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

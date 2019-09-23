@@ -24,8 +24,10 @@ class Photo extends Model
 
 
     public $fillable = [
-        'url',
-        'product_id'
+        'path',
+        'product_id',
+        'size',
+        'filename'
     ];
 
     /**
@@ -35,22 +37,11 @@ class Photo extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'url' => 'string',
+        'path' => 'string',
         'product_id' => 'integer'
-    ];
-
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        'url' => 'required',
-        'product_id' => 'required'
     ];
 
     public function product(){
         return $this->belongsTo('App/Models/Product');
     }
-
 }

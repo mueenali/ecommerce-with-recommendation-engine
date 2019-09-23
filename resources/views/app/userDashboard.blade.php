@@ -29,28 +29,25 @@
                                     <table class="table">
                                         <thead>
                                         <tr>
-                                            <th>Order</th>
-                                            <th>Date</th>
+                                            <th>Total Items</th>
+                                            <th>Total Price</th>
                                             <th>Status</th>
-                                            <th>Total</th>
-                                            <th>Actions</th>
+                                            <th>Date</th>
+                                            <th>Details</th>
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        @if(\App\Helpers\Helper::current_user()->orders)
+                                            @foreach(\App\Helpers\Helper::current_user()->orders as $order)
                                         <tr>
-                                            <td>1</td>
-                                            <td>May 10, 2018</td>
-                                            <td><span class="success">Completed</span></td>
-                                            <td>$25.00 for 1 item </td>
-                                            <td><a href="cart.html" class="view">view</a></td>
+                                            <td>{{$order->items}}</td>
+                                            <td>{{$order->total}}</td>
+                                            <td><span class="success">{{$order->status}}</span></td>
+                                            <td>{{$order->created_at->format('d/m/Y')}}</td>
+                                            <td><a href="{{route('order.show', $order->id)}}">View Order</a></td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>May 10, 2018</td>
-                                            <td>Processing</td>
-                                            <td>$17.00 for 1 item </td>
-                                            <td><a href="cart.html" class="view">view</a></td>
-                                        </tr>
+                                        @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>

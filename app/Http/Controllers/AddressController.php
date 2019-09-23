@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddressRequest;
+use App\Http\Requests\UpdateAddressRequest;
 use App\Repositories\AddressRepository;
 
 
@@ -72,11 +73,11 @@ class AddressController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\AddressRequest  $request
+     * @param  \Illuminate\Http\UpdateAddressRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AddressRequest $request, $id)
+    public function update(UpdateAddressRequest $request, $id)
     {
         $this->addressRepository->update($request->all(), $id);
         return redirect()->route('userDash.index')->withStatus(__('Address successfully updated.'));

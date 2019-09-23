@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -19,7 +18,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
     use SoftDeletes;
-    use Sluggable;
 
     public $table = 'products';
 
@@ -38,14 +36,6 @@ class Product extends Model
      *
      * @return array
      */
-    public function sluggable()
-    {
-        return [
-            'slug' => [
-                'source' => 'name'
-            ]
-        ];
-    }
     public function subCategory(){
         return $this->belongsTo('App\Models\SubCategory');
     }

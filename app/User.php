@@ -5,11 +5,9 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Cviebrock\EloquentSluggable\Sluggable;
 class User extends Authenticatable
 {
     use Notifiable;
-    use Sluggable;
     public $table = 'users';
     /**
      * The attributes that are mass assignable.
@@ -17,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role_id'
     ];
 
     /**
@@ -42,14 +40,7 @@ class User extends Authenticatable
      *
      * @return array
      */
-    public function sluggable()
-    {
-        return [
-            'slug' => [
-                'source' => 'name'
-            ]
-        ];
-    }
+
     public function addresses() {
         return $this->hasMany('App\Models\Address');
     }
@@ -58,5 +49,8 @@ class User extends Authenticatable
     }
     public function cart() {
         return $this->hasOne('App\Models\Cart');
+    }
+    public function orders() {
+        return $this->hasMany('App\Models\Order');
     }
 }

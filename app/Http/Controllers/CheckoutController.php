@@ -3,12 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
+use App\Repositories\CartItemRepository;
+use App\Repositories\OrderItemRepository;
+use App\Repositories\OrderRepository;
+use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use Stripe\Charge;
 use Stripe\Stripe;
 
 class CheckoutController extends Controller
 {
+    /** @var OrderRepository */
+    private $orderRepository;
+    /** @var OrderItemRepository */
+    private $orderItemRepository;
+    /** @var ProductRepository */
+    private $productRepository;
+    /** @var CartItemRepository */
+    private $cartItemRepository;
+    public function __construct(OrderRepository $orderRepo, OrderItemRepository $orderItemRepo, ProductRepository $productRepo, CartItemRepository $cartItemRepo)
+    {
+        $this->orderItemRepository = $orderItemRepo;
+        $this->orderRepository = $orderRepo;
+        $this->productRepository = $productRepo;
+        $this->cartItemRepository = $cartItemRepo;
+    }
 
     public function index() {
         return view('app.checkout');
@@ -36,6 +55,12 @@ class CheckoutController extends Controller
             'source' => $token,
             'receipt_email' => $user->email,
         ]);
-        return redirect('');
+       $order = $this->orderRepository->createOrder($user);
+       $this->orderItemRepository->createOrderItem($user, $order);
+       $this->productRepository->updateQuantity($user);
+       foreach ($user->cart->cartItems as $cartItem) {
+           $this->cartItemRepository->delete($cartItem->id);
+       }
+        return redirect('')->withStatus(__('Order successfully Placed.'));
     }
 }

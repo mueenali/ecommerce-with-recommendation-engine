@@ -1,33 +1,6 @@
 @extends('layouts.app.appLayout')
 
 @section('content')
-    <div class="col-12">
-        @if (session('status'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('status') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
-    </div>
-    <div class="col-12">
-        @if (session('errors'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('errors') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
-    </div>
-    @if ($errors->has('quantity'))
-        <div class="alert alert-danger">
-            <ul>
-                <li>{{ $errors->first('quantity') }}</li>
-            </ul>
-        </div>
-    @endif
                 @if($product)
                 <!--product Details Inner-->
                 <div class="product_details_inner left_sidebar ptb-110">
@@ -80,6 +53,33 @@
                             </div>
                             <!--Product Tab Style End-->
                             <div class="col-md-12 col-lg-7 col-12">
+                                <div class="col-12">
+                                    @if (session('status'))
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            {{ session('status') }}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="col-12">
+                                    @if (session('errors'))
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            {{ session('errors')->first('error') }}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    @endif
+                                </div>
+                                @if ($errors->has('quantity'))
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            <li>{{ $errors->first('quantity') }}</li>
+                                        </ul>
+                                    </div>
+                                @endif
                                     <div class="product-details-content">
                                         <h3>{{$product->name}}</h3>
                                         <div class="rating-number">
@@ -102,13 +102,13 @@
                                             <div class="cart-plus-minus">
                                                 <input type="text" value="01" name="quantity" class="cart-plus-minus-box">
                                             </div>
-                                            <div class="add_to_cart_btn">
+                                            <div style="margin-left: 20px" class="add_to_cart_btn">
                                                 {{ Form::hidden('product_id',$product->id)}}
-                                                <a href="#" onclick="confirm('{{ __("Are you sure you want to add this product to your cart?") }}') ? this.parentElement.submit() : ''">add to cart</a>
+                                                <button type="submit" class="btn btn-outline-secondary">Add To Cart</button>
                                             </div>
                                             {!! Form::close() !!}
-                                            <div class="wishlist">
-                                                <a href="#"><i class="zmdi zmdi-favorite-outline"></i></a>
+                                            <div style="margin-left: 20px" class="wishlist">
+                                                <button type="button" class="btn btn-outline-secondary">Add To Wishlist</button>
                                             </div>
                                         </div>
                                         <div class="product_details_cat_list mt-35">

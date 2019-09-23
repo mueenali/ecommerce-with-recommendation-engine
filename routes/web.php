@@ -28,6 +28,7 @@ Route::prefix('user')->group(function () {
     Route::get('dashboard', 'UserController@index')->name('userDash.index');
     Route::resource('address', 'AddressController', ['except' => 'show', 'index', 'destroy']);
     Route::get('address/remove/{id}', 'AddressController@destroy')->name('address.destroy');
+    Route::get('order/{id}','UserController@viewOrder')->name('order.show');
 });
 
 Route::prefix('admin')->group(function () {
@@ -35,6 +36,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('category', 'AdminCategoryController', ['except' => ['show']]);
     Route::resource('subCategory', 'AdminSubCategoryController', ['except' =>['show']]);
     Route::resource('product', 'AdminProductController' , ['except' => ['show']]);
+    Route::resource('product/photos', 'PhotoController');
     Route::get('dashboard', 'AdminController@index')->name('admin.index');
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);

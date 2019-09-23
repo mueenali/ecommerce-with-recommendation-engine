@@ -11,15 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class Helper
 {
-    public static function upload($file, $dest)
-    {
-        $path = time() . $file->getClientOriginalName();
-        $file->move('$dest', $path);
-        return $path;
-    }
-    public static function unlinkFiles($path) {
-        unlink(public_path() . '/' . $path);
-    }
 
     public static function current_user () {
         return Auth::user();
@@ -39,6 +30,9 @@ class Helper
     public static function getCartItemsCount() {
         if(!self::current_user()) {
             return null;
+        }
+        if(!self::current_user()->cart) {
+            return 0;
         }
         return CartItem::where('cart_id',self::current_user()->cart->id )->count();
     }

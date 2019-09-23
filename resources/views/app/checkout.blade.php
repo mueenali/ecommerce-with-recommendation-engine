@@ -5,6 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-12">
+
                 </div>
                 <div class="col-lg-6 col-md-12 col-12">
                     <div class="your-order">
@@ -53,7 +54,7 @@
                                     </div>
                                 </div>
                                 <div class="order-button-payment">
-                                    <a href="{{route('payment.index')}}">Place Order</a>
+                                    <a class="btn btn-success" href="{{route('payment.index')}}" role="button">Place Order</a>
                                 </div>
                             </div>
                         </div>
