@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Cviebrock\EloquentSluggable\Sluggable;
 
 /**
  * Class SubCategory
@@ -17,7 +16,6 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class SubCategory extends Model
 {
     use SoftDeletes;
-    use Sluggable;
     public $table = 'sub_categories';
 
     protected $dates = ['deleted_at'];
@@ -31,14 +29,7 @@ class SubCategory extends Model
      *
      * @return array
      */
-    public function sluggable()
-    {
-        return [
-            'slug' => [
-                'source' => 'name'
-            ]
-        ];
-    }
+
     /**
      * The attributes that should be casted to native types.
      *

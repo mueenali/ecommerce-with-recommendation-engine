@@ -12,40 +12,18 @@
                                     <div class="product-details-tab">
                                         <div id="img-1" class="zoomWrapper single-zoom">
                                             <a href="#">
-                                                <img id="zoom1" src="/assets/img/product/pro_details/big-2.jpg" data-zoom-image="/assets/img/product/pro_details/z-1.jpg" alt="big-1">
+                                                <img id="zoom1" src="{{$product->photos[0]->path}}" data-zoom-image="{{$product->photos[0]->path}}" alt="big-1">
                                             </a>
                                         </div>
                                         <div class="single-zoom-thumb mt-20">
                                             <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
+                                                @foreach($product->photos as $photo)
                                                 <li>
-                                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="/assets/img/product/pro_details/big-2.jpg" data-zoom-image="assets/img/product/pro_details/z-1.jpg">
-                                                        <img src="/assets/img/product/pro_details/pro_sm_1.jpg" alt="zo-th-1"/>
+                                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{$photo->path}}" data-zoom-image="{{$photo->path}}">
+                                                        <img src="{{$photo->path}}" style="height: 85px;width: 110px" alt="zo-th-1"/>
                                                     </a>
                                                 </li>
-                                                <li>
-                                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="/assets/img/product/pro_details/big-2.jpg" data-zoom-image="assets/img/product/pro_details/z-1.jpg">
-                                                        <img src="/assets/img/product/pro_details/pro_sm_2.jpg" alt="zo-th-1"/>
-                                                    </a>
-
-                                                </li>
-                                                <li >
-                                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="/assets/img/product/pro_details/big-3.jpg" data-zoom-image="assets/img/product/pro_details/z-1.jpg">
-                                                        <img src="/assets/img/product/pro_details/pro_sm_3.jpg" alt="zo-th-1"/>
-                                                    </a>
-
-                                                </li>
-                                                <li >
-                                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="/assets/img/product/pro_details/big-4.jpg" data-zoom-image="assets/img/product/pro_details/z-1.jpg">
-                                                        <img src="/assets/img/product/pro_details/pro_sm_4.jpg" alt="zo-th-1"/>
-                                                    </a>
-
-                                                </li>
-                                                <li >
-                                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/pro_details/big-4.jpg" data-zoom-image="assets/img/product/pro_details/z-1.jpg">
-                                                        <img src="assets/img/product/pro_details/pro_sm_4.jpg" alt="zo-th-1"/>
-                                                    </a>
-
-                                                </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
@@ -95,7 +73,7 @@
                                             </div>
                                         </div>
                                         <div class="price_amount">
-                                            <span class="current_price">${{$product->price}}</span>
+                                            <span class="current_price">RM {{$product->price}}</span>
                                         </div>
                                         {!! Form::open(['method'=>'POST','action' => 'ShoppingCartController@store']) !!}
                                         <div class="single_product_action d-flex align-items-center">
@@ -242,151 +220,60 @@
                                 <!-- Row End -->
                             </div>
                         </div>
+                        @if(current_user())
                          <!--Realted Product section start-->
                         <div class="related_product_section mt-100">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="section_title">
-                                        <h2>Related Product</h2>
+                                        <h2>Recommended for you</h2>
                                     </div>
                                 </div>
                             </div>
                             <div class="row related_product_guttters owl-carousel mt-60">
-                                <div class="col-lg-3">
-                                    <div class="single__product">
-                                        <div class="produc_thumb">
-                                            <a href="#"><img src="/assets/img/product/home2/4.png" alt=""></a>
-                                        </div>
-                                        <div class="product_hover">
+                                @foreach(getRecommendations() as $recommendation)
+                                    <div class="col-lg-3">
+                                        <div class="single__product">
+                                            <div class="produc_thumb">
+                                                <a href="#"><img src="{{$recommendation->product->photos[0]->path}}" alt="" style="height: 220px;width: 288px"></a>
+                                            </div>
                                             <div class="product_action">
-                                                <a href="#" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
-                                                <a href="#" title="Compare"><i class="zmdi zmdi-refresh-alt"></i></a>
-                                            </div>
-                                            <div class="product__desc">
-                                                <h3><a href="product-details.html">Soffer Pro x33</a></h3>
-                                                <div class="price_amount">
-                                                    <span class="current_price">$2999.99</span>
-                                                    <span class="discount_price">-08%</span>
-                                                    <span class="old_price">$3700.00</span>
+                                                <div class="row">
+                                                    <div class="ml-2 mr-1 mt-1">
+                                                        {!! Form::open(['method'=>'POST','action' => 'ShoppingCartController@store']) !!}
+                                                        {{ Form::hidden('product_id',$recommendation->product->id)}}
+                                                        {{Form::hidden('quantity', 1)}}
+                                                        <button type="submit" title="Add To Cart" style="background-color: white;border-color: transparent"><i
+                                                                class="zmdi zmdi-shopping-cart-plus m-2"></i>
+                                                        </button>
+                                                        {!! Form::close() !!}
+                                                    </div>
+                                                    <div class="ml-2 mr-1 mt-1">
+                                                        {!! Form::open(['method'=>'POST','action' => 'WishListController@store']) !!}
+                                                        {{ Form::hidden('product_id',$recommendation->product->id) }}
+                                                        <button type="submit" title="Wishlist" style="background-color: white;border-color: transparent"><i
+                                                                class="zmdi zmdi-favorite-outline m-2"></i>
+                                                        </button>
+                                                        {!! Form::close() !!}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single__product">
-                                        <div class="produc_thumb">
-                                            <a href="#"><img src="/assets/img/product/home2/5.png" alt=""></a>
-                                        </div>
-                                        <div class="product_hover">
-                                            <div class="product_action">
-                                                <a href="#" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
-                                                <a href="#" title="Compare"><i class="zmdi zmdi-refresh-alt"></i></a>
-                                            </div>
-                                            <div class="product__desc">
-                                                <h3><a href="product-details.html">Soffer Pro x33</a></h3>
-                                                <div class="price_amount">
-                                                    <span class="current_price">$2999.99</span>
-                                                    <span class="discount_price">-08%</span>
-                                                    <span class="old_price">$3700.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single__product">
-                                        <div class="produc_thumb">
-                                            <a href="#"><img src="/assets/img/product/home2/6.png" alt=""></a>
-                                        </div>
-                                        <div class="product_hover">
-                                            <div class="product_action">
-                                                <a href="#" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
-                                                <a href="#" title="Compare"><i class="zmdi zmdi-refresh-alt"></i></a>
-                                            </div>
-                                            <div class="product__desc">
-                                                <h3><a href="product-details.html">Soffer Pro x33</a></h3>
-                                                <div class="price_amount">
-                                                    <span class="current_price">$2999.99</span>
-                                                    <span class="discount_price">-08%</span>
-                                                    <span class="old_price">$3700.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single__product">
-                                        <div class="produc_thumb">
-                                            <a href="#"><img src="/assets/img/product/home2/7.png" alt=""></a>
-                                        </div>
-                                        <div class="product_hover">
-                                            <div class="product_action">
-                                                <a href="#" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
-                                                <a href="#" title="Compare"><i class="zmdi zmdi-refresh-alt"></i></a>
-                                            </div>
-                                            <div class="product__desc">
-                                                <h3><a href="product-details.html">Soffer Pro x33</a></h3>
-                                                <div class="price_amount">
-                                                    <span class="current_price">$2999.99</span>
-                                                    <span class="discount_price">-08%</span>
-                                                    <span class="old_price">$3700.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single__product">
-                                        <div class="produc_thumb">
-                                            <a href="#"><img src="/assets/img/product/home2/8.png" alt=""></a>
-                                        </div>
-                                        <div class="product_hover">
-                                            <div class="product_action">
-                                                <a href="#" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
-                                                <a href="#" title="Compare"><i class="zmdi zmdi-refresh-alt"></i></a>
-                                            </div>
-                                            <div class="product__desc">
-                                                <h3><a href="product-details.html">Soffer Pro x33</a></h3>
-                                                <div class="price_amount">
-                                                    <span class="current_price">$2999.99</span>
-                                                    <span class="discount_price">-08%</span>
-                                                    <span class="old_price">$3700.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single__product">
-                                        <div class="produc_thumb">
-                                            <a href="#"><img src="/assets/img/product/home2/9.png" alt=""></a>
-                                        </div>
-                                        <div class="product_hover">
-                                            <div class="product_action">
-                                                <a href="#" title="Add To Cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite-outline"></i></a>
-                                                <a href="#" title="Compare"><i class="zmdi zmdi-refresh-alt"></i></a>
-                                            </div>
-                                            <div class="product__desc">
-                                                <h3><a href="product-details.html">Soffer Pro x33</a></h3>
-                                                <div class="price_amount">
-                                                    <span class="current_price">$2999.99</span>
-                                                    <span class="discount_price">-08%</span>
-                                                    <span class="old_price">$3700.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
+                                            </div>
+                                            <div class="product__desc ml-2">
+                                                <h3>
+                                                    <a href="{{route('item', $recommendation->product->id)}}">{{$recommendation->product->name}}</a>
+                                                </h3>
+                                                <div class="price_amount">
+                                                    <span class="current_price">RM{{$recommendation->product->price}}</span>
+                                                </div>
+                                            </div>
+                                            {{--</div>--}}
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
+                        @endif
                         <!--Realted Product section end-->
                     </div>
                 </div>

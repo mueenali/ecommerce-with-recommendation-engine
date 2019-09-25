@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Helper;
 use App\Repositories\OrderItemRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\ReviewRepository;
@@ -44,7 +43,7 @@ class UserController extends Controller
         $orderItem = $this->orderItemRepository->find($request->input('orderItemId'));
         $orderItem->reviewed = 1;
         $orderItem->save();
-        $request->merge(['user_id' => Helper::current_user()->id]);
+        $request->merge(['user_id' => current_user()->id]);
         $this->reviewRepository->create($request->all());
         return redirect()->route('order.show', $orderItem->order->id )->withStatus(__('Review successfully submitted.'));
     }

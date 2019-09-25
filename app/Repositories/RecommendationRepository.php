@@ -2,23 +2,22 @@
 
 namespace App\Repositories;
 
-use App\Helpers\Helper;
-use App\Models\Cart;
+use App\Models\Recommendation;
 use App\Repositories\BaseRepository;
 
 /**
- * Class CartRepository
+ * Class RecommendationRepository
  * @package App\Repositories
- * @version September 20, 2019, 11:26 pm UTC
+ * @version September 24, 2019, 7:08 pm UTC
 */
 
-class CartRepository extends BaseRepository
+class RecommendationRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-
+        
     ];
 
     /**
@@ -31,16 +30,11 @@ class CartRepository extends BaseRepository
         return $this->fieldSearchable;
     }
 
-    public function hasCart() {
-        $userId = current_user()->id;
-        $cart = $this->model->newQuery()->where('user_id',$userId )->firstOrCreate(['user_id' => $userId]);
-        return $cart;
-    }
     /**
      * Configure the Model
      **/
     public function model()
     {
-        return Cart::class;
+        return Recommendation::class;
     }
 }

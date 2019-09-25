@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AddressRequest;
 use App\Http\Requests\UpdateAddressRequest;
 use App\Repositories\AddressRepository;
+use phpDocumentor\Reflection\Types\Null_;
 
 
 class AddressController extends Controller
@@ -43,6 +44,10 @@ class AddressController extends Controller
      */
     public function store(AddressRequest $request)
     {
+        $address = $this->addressRepository->findBy('user_id', $request->input('user_id'));
+        if($address == null) {
+            $request->merge('default', true);
+        }
         $this->addressRepository->create($request->all());
         return redirect()->route('userDash.index')->withStatus(__('Address successfully created.'));
     }
@@ -93,5 +98,10 @@ class AddressController extends Controller
     {
         $this->addressRepository->delete($id);
         return redirect()->route('userDash.index')->withStatus(__('Address successfully deleted.'));
+    }
+
+    public function makeDefault($id) {
+        $this->addressRepository->updateDefault($id);
+        return redirect()->route('userDash.index')->withStatus(__('Address successfully set to default.'));
     }
 }

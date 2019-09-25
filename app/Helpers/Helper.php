@@ -1,39 +1,35 @@
 <?php
 
-
-namespace App\Helpers;
-
-
 use App\Models\CartItem;
 use App\Models\Category;
+use App\Models\Recommendation;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 
-class Helper
-{
 
-    public static function current_user () {
+ function current_user() {
         return Auth::user();
-    }
-
-    public static function getCategories() {
+ }
+    function getCategories() {
        return Category::all();
     }
-
-    public static function getWishListsCount () {
-        if(!self::current_user()) {
+    function getWishListsCount() {
+        if(!current_user()) {
             return null;
         }
-        return Wishlist::where('user_id', self::current_user()->id)->count();
+        return Wishlist::where('user_id', current_user()->id)->count();
     }
-
-    public static function getCartItemsCount() {
-        if(!self::current_user()) {
+    function getCartItemsCount() {
+        if(!current_user()) {
             return null;
         }
-        if(!self::current_user()->cart) {
+        if(!current_user()->cart) {
             return 0;
         }
-        return CartItem::where('cart_id',self::current_user()->cart->id )->count();
+        return CartItem::where('cart_id', current_user()->cart->id )->count();
     }
-}
+    function getRecommendations() {
+        $recommendations = Recommendation::where('user_id', current_user()->id)->limit(8)->orderBy('created_at', 'desc')->get();
+        return $recommendations;
+    }
+

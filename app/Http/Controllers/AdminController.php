@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Repositories\OrderRepository;
 
 class AdminController extends Controller
 {
-    public function index() {
-        return view('admin.dashboard');
+    /** @var  OrderRepository */
+    private $orderRepository;
+    public function __construct(OrderRepository $orderRepo)
+    {
+        $this->orderRepository = $orderRepo;
     }
+    public function index() {
+        $orders = $this->orderRepository->getLastRecords(5);
+        return view('admin.dashboard')->with('orders', $orders);
+    }
+
 }

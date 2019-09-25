@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Repositories\PhotoRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller

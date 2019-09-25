@@ -32,14 +32,13 @@ class CartItemRepository extends BaseRepository
         return $this->fieldSearchable;
     }
 
-    private function getCartItemByProductId($productId) {
+    private function getCartItemByProductIdAndCartId($productId, $cartId) {
         $query = $this->model->newQuery();
-        return $query->where('product_id', $productId)->first();
-
+        return $query->where('product_id', $productId)->where('cart_id', $cartId )->first();
     }
     public function deleteCartItem($id) {
         $cartItem = $this->find($id);
-        $cart = Helper::current_user()->cart;
+        $cart = current_user()->cart;
         $cart->total -= $cartItem->price;
         $cart->save();
         return $cartItem->delete();
@@ -47,7 +46,7 @@ class CartItemRepository extends BaseRepository
 
     public function updateCartItem($id, $quantity, $productId) {
         $cartItem = $this->find($id);
-        $cart = Helper::current_user()->cart;
+        $cart = current_user()->cart;
         $product = Product::find($productId);
         if($quantity > $product->quantity) {
             return false;
@@ -63,7 +62,7 @@ class CartItemRepository extends BaseRepository
 
     public function addCartItem($cart, $product_id, $quantity) {
         $product = Product::findOrFail($product_id);
-        $cartItem = $this->getCartItemByProductId($product_id);
+        $cartItem = $this->getCartItemByProductIdAndCartId($product_id, $cart->id);
         if($cartItem != null){
             $totalItemQuantity = $cartItem->quantity + $quantity;
             if($totalItemQuantity > 10) {

@@ -1,29 +1,32 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\WishlistItem;
-use App\Repositories\WishlistItemRepository;
-use App\Repositories\WishlistRepository;
+
+use App\Repositories\OrderItemRepository;
+use App\Repositories\OrderRepository;
 use Illuminate\Http\Request;
 
-class WishListController extends Controller
+class AdminOrderController extends Controller
 {
+
+    /** @var  OrderRepository */
+    private $orderRepository;
+    /** @var  OrderItemRepository */
+    private $orderItemRepository;
+    public function __construct(OrderRepository $orderRepo, OrderItemRepository $orderItemRepo)
+    {
+        $this->orderRepository = $orderRepo;
+        $this->orderItemRepository = $orderItemRepo;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    /** @var  WishlistRepository */
-    private $wishlistRepository;
-    public function __construct(WishlistRepository $wishlistRepo)
-    {
-        $this->wishlistRepository = $wishlistRepo;
-    }
-
     public function index()
     {
-        $wishLists = $this->wishlistRepository->findBy('user_id', current_user()->id);
-        return view('app.wishList')->with('wishLists', $wishLists);
+        $orders = $this->orderRepository->paginate(15);
+        return view('admin.orders.view')->with('orders', $orders);
     }
 
     /**
@@ -31,7 +34,6 @@ class WishListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function create()
     {
 
@@ -45,9 +47,7 @@ class WishListController extends Controller
      */
     public function store(Request $request)
     {
-        $data = ['user_id' => current_user()->id, 'product_id' => $request->input('product_id')];
-        $this->wishlistRepository->create($data);
-        return redirect()->back();
+        //
     }
 
     /**
@@ -58,7 +58,8 @@ class WishListController extends Controller
      */
     public function show($id)
     {
-
+        $orderItems = $this->orderItemRepository->findBy('order_id', $id);
+        return view('admin.orders.show')->with('orderItems', $orderItems);
     }
 
     /**
@@ -69,7 +70,8 @@ class WishListController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = $this->orderRepository->find($id);
+        return view('admin.orders.edit')->with('order', $order);
     }
 
     /**
@@ -81,7 +83,8 @@ class WishListController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->orderRepository->update($request->all(), $id);
+        return redirect()->route('orders.index')->withStatus(__('Order status successfully updated.'));
     }
 
     /**
@@ -90,11 +93,8 @@ class WishListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     public function destroy($id)
     {
-//        dd($id);
-        $this->wishlistRepository->delete($id);
-        return  redirect()->back();
+        //
     }
 }

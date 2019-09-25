@@ -6,7 +6,7 @@
         </button>
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('admin.index') }}">
-            <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
+            <img src="/assets/img/logo/logo-2.png" alt="exporso logo">
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">

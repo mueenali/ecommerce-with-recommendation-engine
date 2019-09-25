@@ -52,7 +52,7 @@ class ShoppingCartController extends Controller
         $cart = $this->cartRepository->hasCart();
         $result = $this->cartItemRepository->addCartItem($cart, $request->input('product_id'), $request->input('quantity'));
         if($result  == 'More than 10') {
-            return redirect()->back()->withErrors(['error' => 'You cannot add more than 10 items per kind']);
+            return redirect()->back()->withErrors(['error' => 'You cannot add more than 10 quantity for the same kind of item per order']);
         }else if ($result  == 'Not enough') {
             return redirect()->back()->withErrors(['error' => 'Quantity not enough']);
         } else {

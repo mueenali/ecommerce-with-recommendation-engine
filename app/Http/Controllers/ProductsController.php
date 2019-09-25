@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
+use App\Repositories\RecommendationRepository;
+use App\Repositories\VisitedProductRepository;
 
 class ProductsController extends Controller
 {
@@ -11,14 +13,21 @@ class ProductsController extends Controller
     private $productsRepository;
     /** @var CategoryRepository */
     private $categoriesRepository;
-    public function __construct(ProductRepository $productRepo, CategoryRepository $categoriesRepo)
+    /** @var VisitedProductRepository */
+    private $visitedProductRepository;
+    /** @var RecommendationRepository */
+    private $recommendationRepository;
+    public function __construct(ProductRepository $productRepo, CategoryRepository $categoriesRepo,RecommendationRepository $recommendationRepo,
+                                VisitedProductRepository $visitedProductRepo)
     {
         $this->productsRepository = $productRepo;
         $this->categoriesRepository = $categoriesRepo;
+        $this->visitedProductRepository = $visitedProductRepo;
+        $this->recommendationRepository = $recommendationRepo;
     }
 
     public function getAllProducts() {
-        $products = $this->productsRepository->all();
+        $products = $this->productsRepository->paginate(12);
         $categories = $this->categoriesRepository->all();
         return view('app.products.shop', compact('products','categories'));
     }
@@ -27,6 +36,14 @@ class ProductsController extends Controller
         $product = $this->productsRepository->find($id);
         if(empty($product)) {
             return redirect('shop');
+        }
+
+        if(current_user() != null) {
+            $this->visitedProductRepository->deleteBy('user_id', current_user()->id);
+            $this->visitedProductRepository->create([
+                'user_id' => current_user()->id,
+                'product_id' => $product->id
+            ]);
         }
         return view('app.products.product')->with('product', $product);
     }

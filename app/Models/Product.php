@@ -29,7 +29,8 @@ class Product extends Model
         'price',
         'quantity',
         'brand',
-        'sub_category_id'
+        'sub_category_id',
+        'times_bought'
     ];
     /**
      * Return the sluggable configuration array for this model.
@@ -61,6 +62,14 @@ class Product extends Model
 
     public function reviews() {
         return $this->hasMany('App\Models\Review');
+    }
+
+    public function visitedProducts() {
+        return $this->hasMany('App\Models\VisitedProduct');
+    }
+
+    public function recommendation() {
+        return $this->hasMany('App\Models\Recommendation');
     }
 
     /**

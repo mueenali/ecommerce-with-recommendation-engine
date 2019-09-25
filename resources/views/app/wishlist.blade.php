@@ -30,9 +30,9 @@
                                         </button>
                                     </form>
                                     </td>
-                                    <td class="pro-thumbnail"><a href="#"><img src="assets/img/product/pro_sm_1.png" alt="" /></a></td>
+                                    <td class="pro-thumbnail"><a href="#"><img src="{{$value->product->photos[0]->path}}" alt="" /></a></td>
                                     <td class="pro-title"><a href="#">{{$value->product->name}}</a></td>
-                                    <td class="pro-price"><span class="amount">${{$value->product->price}}</span></td>
+                                    <td class="pro-price"><span class="amount">RM {{$value->product->price}}</span></td>
                                     @if($value->product->quantity > 0)
                                         <td class="pro-stock-stauts"><span class="in-stock">In Stock</span></td>
                                     @else

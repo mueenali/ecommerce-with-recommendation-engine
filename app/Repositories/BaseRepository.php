@@ -107,6 +107,10 @@ abstract class BaseRepository
         return $query;
     }
 
+    public function getLastRecords($numOfRecords) {
+        $query = $this->model->newQuery()->orderBy('id', 'desc')->take($numOfRecords)->get();
+        return $query;
+    }
     /**
      * Retrieve all records with given filter criteria
      *
@@ -155,6 +159,10 @@ abstract class BaseRepository
     public function findBy($column,$predicate) {
         $query = $this->model->newQuery();
         return $query->where($column, $predicate)->get();
+    }
+
+    public function deleteBy($column, $predicate) {
+        return $this->model->newQuery()->where($column, $predicate)->delete();
     }
 
     /**

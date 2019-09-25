@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "99a8f3178e61a48788fe0f8c6af5d6a1",
+    "content-hash": "70e4a606c37ee8e7e2c087e669c9450f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -60,16 +60,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.112.5",
+            "version": "3.112.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "5c6f05d68576f845a8391b83020b480840eca759"
+                "reference": "5167704e39f4e139152906b3d962aa15692bff07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/5c6f05d68576f845a8391b83020b480840eca759",
-                "reference": "5c6f05d68576f845a8391b83020b480840eca759",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/5167704e39f4e139152906b3d962aa15692bff07",
+                "reference": "5167704e39f4e139152906b3d962aa15692bff07",
                 "shasum": ""
             },
             "require": {
@@ -139,7 +139,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-09-20T22:08:27+00:00"
+            "time": "2019-09-24T18:13:32+00:00"
         },
         {
             "name": "barryvdh/laravel-cors",
@@ -1963,6 +1963,61 @@
             "time": "2018-07-02T15:55:56+00:00"
         },
         {
+            "name": "php-ai/php-ml",
+            "version": "0.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-ai/php-ml.git",
+                "reference": "5e02b893e904761cd7e2415b11778cd421494c07"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-ai/php-ml/zipball/5e02b893e904761cd7e2415b11778cd421494c07",
+                "reference": "5e02b893e904761cd7e2415b11778cd421494c07",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "phpbench/phpbench": "^0.14.0",
+                "phpstan/phpstan-phpunit": "^0.10",
+                "phpstan/phpstan-shim": "^0.10",
+                "phpstan/phpstan-strict-rules": "^0.10",
+                "phpunit/phpunit": "^7.0.0",
+                "symplify/coding-standard": "^5.1",
+                "symplify/easy-coding-standard": "^5.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phpml\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arkadiusz Kondas",
+                    "email": "arkadiusz.kondas@gmail.com"
+                }
+            ],
+            "description": "PHP-ML - Machine Learning library for PHP",
+            "homepage": "https://github.com/php-ai/php-ml",
+            "keywords": [
+                "Neural network",
+                "artificial intelligence",
+                "computational learning theory",
+                "data science",
+                "feature extraction",
+                "machine learning",
+                "pattern recognition"
+            ],
+            "time": "2019-03-20T22:22:45+00:00"
+        },
+        {
             "name": "phpoption/phpoption",
             "version": "1.5.0",
             "source": {
@@ -2512,16 +2567,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v7.2.0",
+            "version": "v7.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "b635034520a5a48b3c38335a363e6757cd31ddbe"
+                "reference": "9a58f033d9d126c3785f0d8ad47f2e1db269864a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/b635034520a5a48b3c38335a363e6757cd31ddbe",
-                "reference": "b635034520a5a48b3c38335a363e6757cd31ddbe",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/9a58f033d9d126c3785f0d8ad47f2e1db269864a",
+                "reference": "9a58f033d9d126c3785f0d8ad47f2e1db269864a",
                 "shasum": ""
             },
             "require": {
@@ -2565,7 +2620,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2019-09-17T17:12:59+00:00"
+            "time": "2019-09-24T17:11:03+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

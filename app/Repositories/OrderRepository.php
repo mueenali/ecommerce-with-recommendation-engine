@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Address;
 use App\Models\CartItem;
 use App\Models\Order;
 use App\Repositories\BaseRepository;
@@ -35,9 +36,13 @@ class OrderRepository extends BaseRepository
      * Configure the Model
      **/
 
+
+
     public function createOrder($user) {
         $itemCount = CartItem::where('cart_id', $user->cart->id)->count();
-        $order = $this->create(['user_id' => $user->id, 'status' => 'Processing','total' => $user->cart->total, 'items' => $itemCount]);
+        $address = Address::where('user_id', $user->id)->where('default', true)->first();
+        $order = $this->create(['user_id' => $user->id, 'status' => 'Processing','total' => $user->cart->total, 'items' => $itemCount
+        , 'address_id' => $address->id]);
         return $order;
     }
 

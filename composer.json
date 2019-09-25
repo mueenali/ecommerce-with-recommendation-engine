@@ -20,6 +20,7 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.8.0",
         "league/flysystem-aws-s3-v3": "^1.0",
+        "php-ai/php-ml": "^0.8.0",
         "stripe/stripe-php": "^7.2"
     },
     "require-dev": {
@@ -47,6 +48,9 @@
         "classmap": [
             "database/seeds",
             "database/factories"
+        ],
+        "files": [
+            "app/Helpers/Helper.php"
         ]
     },
     "autoload-dev": {

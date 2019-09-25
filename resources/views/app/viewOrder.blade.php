@@ -32,7 +32,7 @@
                                                 <tr>
                                                     <td>{{$item->product->name}}</td>
                                                     <td>{{$item->quantity}}</td>
-                                                    <td>{{$item->total_price}}</td>
+                                                    <td>RM {{$item->total_price}}</td>
                                                     @if($item->reviewed == 0)
                                                         <td><a href="{{route('review.create', $item->id)}}">Submit Review</a></td>
                                                     @else

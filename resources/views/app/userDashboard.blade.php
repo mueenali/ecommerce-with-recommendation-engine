@@ -37,11 +37,11 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @if(\App\Helpers\Helper::current_user()->orders)
-                                            @foreach(\App\Helpers\Helper::current_user()->orders as $order)
+                                        @if(current_user()->orders)
+                                            @foreach(current_user()->orders as $order)
                                         <tr>
                                             <td>{{$order->items}}</td>
-                                            <td>{{$order->total}}</td>
+                                            <td>RM {{$order->total}}</td>
                                             <td><span class="success">{{$order->status}}</span></td>
                                             <td>{{$order->created_at->format('d/m/Y')}}</td>
                                             <td><a href="{{route('order.show', $order->id)}}">View Order</a></td>
@@ -58,7 +58,7 @@
                                 <a href="{{route('address.create')}}">Add New Address</a>
                                 <div class="container">
                                     <div class="row">
-                                        @foreach(\App\Helpers\Helper::current_user()->addresses as $address)
+                                        @foreach(current_user()->addresses as $address)
                                         <div class="col-sm-4">
                                             <div class="card" style="width: 18rem;">
                                                 <div class="card-body">
@@ -67,6 +67,12 @@
                                                     <h6 class="card-subtitle mb-2 text-muted">{{$address->state}}</h6>
                                                     <p class="card-text">{{$address->street_address}}</p>
                                                     <h6 class="card-subtitle mb-2 text-muted">{{$address->postcode}}</h6>
+                                                    @if($address->default == true)
+                                                        <h6 class="card-subtitle mb-2 text-muted">Default</h6>
+                                                    @else
+                                                        <h6 class="card-subtitle mb-2 text-muted">Not default</h6>
+                                                    @endif
+                                                    <a href="{{route('address.default', $address->id)}}" class="card-link">Make default</a>
                                                     <a href="{{route('address.edit', $address->id)}}" class="card-link">Edit</a>
                                                     <a href="{{route('address.destroy', $address->id)}}" class="card-link">Remove</a>
                                                 </div>

@@ -1,12 +1,9 @@
 @extends('layouts.app.appLayout')
 @section('content')
     <!-- checkout-area start -->
-    <div class="checkout-area ptb-100">
+    <div class="checkout-area ptb-100" style="margin-left: 30%">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-12 col-12">
-
-                </div>
                 <div class="col-lg-6 col-md-12 col-12">
                     <div class="your-order">
                         <h3>Your order</h3>
@@ -18,14 +15,14 @@
                                     <th class="product-total">Total</th>
                                 </tr>
                                 </thead>
-                                @foreach(\App\Helpers\Helper::current_user()->cart->cartItems as $item)
+                                @foreach(current_user()->cart->cartItems as $item)
                                 <tbody>
                                 <tr class="cart_item">
                                     <td class="product-name">
                                        {{$item->product->name}} <strong class="product-quantity"> × {{$item->quantity}}</strong>
                                     </td>
                                     <td class="product-total">
-                                        <span class="amount">{{$item->price}}</span>
+                                        <span class="amount">RM {{$item->price}}</span>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -33,7 +30,7 @@
                                 <tfoot>
                                 <tr class="order-total">
                                     <th>Order Total</th>
-                                    <td><strong><span class="amount">{{\App\Helpers\Helper::current_user()->cart->total}}</span></strong>
+                                    <td><strong><span class="amount">RM {{current_user()->cart->total}}</span></strong>
                                     </td>
                                 </tr>
                                 </tfoot>

@@ -18,6 +18,7 @@ class AdminCategoryController extends Controller
     {
         $this->categoryRepository = $categoryRepo;
     }
+
     public function index()
     {
         $categories = $this->categoryRepository->paginate(15);

@@ -31,9 +31,9 @@ class Address extends Model
         'street_address',
         'city',
         'state',
-        'postcode'
+        'postcode',
+        'default'
     ];
-
     /**
      * The attributes that should be casted to native types.
      *
@@ -51,5 +51,8 @@ class Address extends Model
 
     public function user() {
         return $this->belongsTo('App\User');
+    }
+    public function order() {
+        return $this->hasOne('App\Models\Order');
     }
 }

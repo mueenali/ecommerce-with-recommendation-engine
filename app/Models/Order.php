@@ -26,6 +26,7 @@ class Order extends Model
         'total',
         'status',
         'items',
+        'address_id'
     ];
 
     /**
@@ -52,5 +53,9 @@ class Order extends Model
 
     public function user() {
         return $this->belongsTo('App\User');
+    }
+
+    public function address() {
+        return $this->belongsTo('App\Models\Address');
     }
 }

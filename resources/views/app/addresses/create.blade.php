@@ -13,7 +13,7 @@
                             <div class="checkout-form-list">
                                 <label>Country <span class="required">*</span></label>
                                 <input type="text" name="country" placeholder="Country" />
-                                <input type="hidden" name="user_id" value={{\App\Helpers\Helper::current_user()->id}}>
+                                <input type="hidden" name="user_id" value={{current_user()->id}}>
                             </div>
                         </div>
                         <div class="col-md-12">

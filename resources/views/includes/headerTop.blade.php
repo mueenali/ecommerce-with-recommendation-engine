@@ -33,36 +33,40 @@
                 <div class="mini_cart_box_wrapper text-right">
                     <a href="#">
                         <img src="/assets/img/icon/cart-2.png" alt="Mini Cart Icon">
-                        <span class="cart_count">{{\App\Helpers\Helper::getCartItemsCount()}}</span>
+                        <span class="cart_count">{{getCartItemsCount()}}</span>
                     </a>
                     <ul class="mini_cart_box">
-                        @if(\App\Helpers\Helper::current_user())
-                        @foreach(\App\Helpers\Helper::current_user()->cart->cartItems as $item)
-                        <li class="single_product_cart">
-                            <div class="cart_img">
-                                <a href="#"><img src="/assets/img/product/pro_sm_1.png" alt=""></a>
-                            </div>
-                            <div class="cart_title">
-                                <h5><a href="product-details.html">{{$item->product->name}}</a></h5>
-                                <span>${{$item->price}} x {{$item->quantity}}</span>
-                            </div>
-                            <div class="cart_delete">
-                                <a href="#"><i class="zmdi zmdi-delete"></i></a>
-                            </div>
-                        </li>
-                        @endforeach
-                        <li class="cart_space">
-                            <div class="cart_sub">
-                                <h4>Total</h4>
-                            </div>
-                            <div class="cart_price">
-                                <h4>{{\App\Helpers\Helper::current_user()->cart->total}}</h4>
-                            </div>
-                        </li>
-                        <li class="cart_btn_wrapper">
-                            <a class="cart_btn" href="{{route('cart.index')}}">view cart</a>
-                            <a class="cart_btn " href="{{route('checkout.index')}}">checkout</a>
-                        </li>
+                        @if(current_user())
+                            @if(current_user()->cart)
+                                @foreach(current_user()->cart->cartItems as $item)
+                                    <li class="single_product_cart">
+                                        <div class="cart_img">
+                                            <a href="#"><img src="{{$item->product->photos[0]->path}}" alt=""></a>
+                                        </div>
+                                        <div class="cart_title">
+                                            <h5><a href="product-details.html">{{$item->product->name}}</a></h5>
+                                            <span>Rm {{$item->price}} x {{$item->quantity}}</span>
+                                        </div>
+                                        <div class="cart_delete">
+                                            <a href="#"><i class="zmdi zmdi-delete"></i></a>
+                                        </div>
+                                    </li>
+                                @endforeach
+                                    <li class="cart_space">
+                                        <div class="cart_sub">
+                                            <h4>Total</h4>
+                                        </div>
+                                        <div class="cart_price">
+                                            <h4>RM {{current_user()->cart->total}}</h4>
+                                        </div>
+                                    </li>
+                                    <li class="cart_btn_wrapper">
+                                        <a class="cart_btn" href="{{route('cart.index')}}">view cart</a>
+                                        <a class="cart_btn " href="{{route('checkout.index')}}">checkout</a>
+                                    </li>
+                                @else
+                                <p>Your Cart is empty</p>
+                            @endif
                         @else
                             <li class="cart_space">
                                 <div class="cart_sub">

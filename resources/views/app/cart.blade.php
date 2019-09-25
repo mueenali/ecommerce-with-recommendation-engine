@@ -55,16 +55,16 @@
                                 @foreach($cart->cartItems as $item)
                                 <tr>
                                     <td class="pro-remove"><a href="{{route('cart.item.remove', $item->id)}}">×</a></td>
-                                    <td class="pro-thumbnail"><a href="#"><img src="assets/img/product/pro_sm_1.png" alt="" /></a></td>
+                                    <td class="pro-thumbnail"><a href="#"><img src="{{$item->product->photos[0]->path}}" alt="" /></a></td>
                                     <td class="pro-title"><a href="#">{{$item->product->name}}</a></td>
-                                    <td class="pro-price"><span class="amount">${{$item->product->price}}</span></td>
+                                    <td class="pro-price"><span class="amount">RM {{$item->product->price}}</span></td>
                                     <td class="pro-quantity"><div class="product-quantity">
                                             <input name="quantity" type="number" value="{{$item->quantity}}"/>
                                             <input type="hidden" name="item_id" value="{{$item->id}}"/>
                                             <input type="hidden" name="product_id" value="{{$item->product->id}}"/>
                                         </div>
                                     </td>
-                                    <td class="pro-subtotal">${{$item->price}}</td>
+                                    <td class="pro-subtotal">RM {{$item->price}}</td>
                                 </tr>
                                 @endforeach
                                 </tbody>
@@ -94,7 +94,7 @@
                                     <tr class="order-total">
                                         <th>Total</th>
                                         <td>
-                                            <strong><span class="amount">${{$cart->total}}</span></strong>
+                                            <strong><span class="amount">RM {{$cart->total}}</span></strong>
                                         </td>
                                     </tr>
                                     </tbody>

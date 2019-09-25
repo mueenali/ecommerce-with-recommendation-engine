@@ -17,7 +17,7 @@ class AddressRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        
+
     ];
 
     /**
@@ -36,5 +36,10 @@ class AddressRepository extends BaseRepository
     public function model()
     {
         return Address::class;
+    }
+
+    public function updateDefault($id) {
+        $this->model->newQuery()->where('default', true)->update(['default' => false]);
+        $this->model->newQuery()->where('id', $id)->update(['default' => true]);
     }
 }

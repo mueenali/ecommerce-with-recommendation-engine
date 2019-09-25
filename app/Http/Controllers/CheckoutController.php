@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Helper;
 use App\Repositories\CartItemRepository;
 use App\Repositories\OrderItemRepository;
 use App\Repositories\OrderRepository;
@@ -48,7 +47,7 @@ class CheckoutController extends Controller
         $secretKey = \config('envVars.stripe_secret');
         Stripe::setApiKey($secretKey);
         $token = $request->input('stripeToken');
-        $user = Helper::current_user();
+        $user = current_user();
         $charge = Charge::create([
             'amount' => $user->cart->total * 100,
             'currency' => 'usd',

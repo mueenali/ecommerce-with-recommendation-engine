@@ -49,8 +49,8 @@
                             @foreach ($products as $product)
                                 <tr>
                                     <td>{{ $product->name }}</td>
-                                    <td>{{ $product->description }}</td>
-                                    <td>${{ $product->price }}</td>
+                                    <td>{!! str_limit($product->description,50)!!}</td>
+                                    <td>RM {{ $product->price}}</td>
                                     <td>{{ $product->quantity }}</td>
                                     <td>{{ $product->brand }}</td>
                                     @if($product->quantity > 0)
